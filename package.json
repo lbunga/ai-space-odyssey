@@ -2,7 +2,6 @@
   "name": "ai-space-odyssey-storyboard",
   "version": "1.0.0",
   "description": "An interactive, space-themed visual storyboard of our Week 1 AI Cohort learning journey.",
-  "main": "index.html",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

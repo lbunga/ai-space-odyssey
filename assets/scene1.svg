@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+    <style>
+        .outline { stroke: #111e3b; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+        .thin-outline { stroke: #111e3b; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+        .fill-blue { fill: #d5e7f7; }
+        .fill-pink { fill: #ffd2e3; }
+        .fill-green { fill: #a4e8c3; }
+        .fill-cream { fill: #fef4cc; }
+        .fill-white { fill: #ffffff; }
+        .fill-navy { fill: #111e3b; }
+        .bg-blob { fill: #f8fafc; }
+    </style>
+
+    <!-- Background Framing Blob -->
+    <path d="M 60 120 Q 30 200 80 320 Q 130 440 260 420 Q 390 400 440 280 Q 490 160 400 80 Q 310 10 170 40 Q 90 80 60 120 Z" class="bg-blob" />
+
+    <!-- Comic hand-drawn title at the top -->
+    <g transform="translate(250, 60)">
+        <!-- Title box background highlight -->
+        <path d="M -160 -25 L 160 -25 Q 170 -25 170 -15 L 170 15 Q 170 25 160 25 L -160 25 Q -170 25 -170 15 L -170 -15 Q -170 -25 -160 -25 Z" class="fill-cream outline" />
+        <!-- Hand-drawn Title text -->
+        <text x="0" y="7" font-family="'Space Grotesk', sans-serif" font-size="22" font-weight="900" text-anchor="middle" class="fill-navy">Destination: AI Cosmos</text>
+        <!-- Sketchy underline -->
+        <path d="M -100 15 Q 0 18 100 14" fill="none" class="thin-outline" />
+    </g>
+
+    <!-- Orbit Tracks / Juggling Arcs -->
+    <path d="M 100 240 C 100 120 400 120 400 240" fill="none" stroke="#111e3b" stroke-width="2.5" stroke-dasharray="8,8" stroke-linecap="round" />
+    <path d="M 80 280 C 80 400 420 400 420 280" fill="none" stroke="#111e3b" stroke-width="2.5" stroke-dasharray="8,8" stroke-linecap="round" />
+
+    <!-- Giant Glowing Robot Brain (Center) -->
+    <g transform="translate(250, 240)">
+        <!-- Outer Glowing Aura/Nebula ring -->
+        <ellipse cx="0" cy="0" rx="110" ry="85" fill="rgba(185, 103, 255, 0.08)" stroke="#ffd2e3" stroke-width="2" stroke-dasharray="6,4" />
+
+        <!-- Left Brain Hemisphere -->
+        <path d="M -5 70 C -55 70 -90 50 -90 0 C -90 -55 -45 -70 -5 -70 C -5 -60 -5 60 -5 70 Z" class="fill-pink outline" />
+        <!-- Right Brain Hemisphere -->
+        <path d="M 5 70 C 55 70 90 50 90 0 C 90 -55 45 -70 5 -70 C 5 -60 5 60 5 70 Z" class="fill-pink outline" />
+
+        <!-- Brain wrinkles / line patterns -->
+        <path d="M -45 -45 Q -30 -30 -50 -15 M -70 -20 Q -50 -10 -75 10 M -40 20 Q -25 35 -45 50" fill="none" class="thin-outline" />
+        <path d="M 45 -45 Q 30 -30 50 -15 M 70 -20 Q 50 -10 75 10 M 40 20 Q 25 35 45 50" fill="none" class="thin-outline" />
+
+        <!-- Robotic Visor across center -->
+        <rect x="-65" y="-20" width="130" height="36" rx="18" class="fill-blue outline" />
+        <!-- Robot Eyes -->
+        <circle cx="-30" cy="-2" r="6" class="fill-navy" />
+        <circle cx="30" cy="-2" r="6" class="fill-navy" />
+        <circle cx="-33" cy="-5" r="2" class="fill-white" />
+        <circle cx="27" cy="-5" r="2" class="fill-white" />
+        
+        <!-- visor glare highlight -->
+        <path d="M -50 -12 Q -20 -15 0 -12" fill="none" class="thin-outline" stroke-linecap="round" />
+
+        <!-- Antenna coming out of brain -->
+        <rect x="-10" y="-85" width="20" height="15" rx="3" class="fill-green outline" />
+        <line x1="0" y1="-85" x2="0" y2="-115" class="outline" />
+        <circle cx="0" cy="-115" r="8" class="fill-green outline" />
+    </g>
+
+    <!-- JUGGLED OBJECTS (like asteroids in an explosion) -->
+
+    <!-- Juggled Object 1: Retro Computer (Left) -->
+    <g transform="translate(70, 200) rotate(-15)">
+        <rect x="0" y="0" width="50" height="42" rx="6" class="fill-green outline" />
+        <rect x="7" y="6" width="36" height="30" rx="3" class="fill-white outline" />
+        <line x1="0" y1="36" x2="50" y2="36" class="thin-outline" />
+        <!-- Static shock lines -->
+        <path d="M -8 -8 L -2 2 M 58 -5 L 48 5" fill="none" class="thin-outline" />
+    </g>
+
+    <!-- Juggled Object 2: Floppy Disk (Top Left) -->
+    <g transform="translate(130, 100) rotate(25)">
+        <rect x="0" y="0" width="30" height="30" rx="3" class="fill-blue outline" />
+        <rect x="5" y="8" width="20" height="18" rx="1" class="fill-white outline" />
+        <line x1="8" y1="12" x2="22" y2="12" class="thin-outline" />
+        <rect x="8" y="0" width="14" height="6" class="fill-cream outline" />
+    </g>
+
+    <!-- Juggled Object 3: Server Tower (Bottom Left) -->
+    <g transform="translate(120, 340) rotate(-30)">
+        <rect x="0" y="0" width="28" height="55" rx="4" class="fill-cream outline" />
+        <!-- Drive slots -->
+        <line x1="6" y1="12" x2="22" y2="12" class="thin-outline" />
+        <line x1="6" y1="20" x2="22" y2="20" class="thin-outline" />
+        <!-- LED indicator dots -->
+        <circle cx="8" cy="36" r="2" class="fill-green thin-outline" />
+        <circle cx="16" cy="36" r="2" class="fill-pink thin-outline" />
+        <circle cx="24" cy="36" r="2" class="fill-blue thin-outline" />
+    </g>
+
+    <!-- Juggled Object 4: Exploding Server (Right) -->
+    <g transform="translate(380, 240) rotate(35)">
+        <rect x="0" y="0" width="28" height="55" rx="4" class="fill-blue outline" />
+        <line x1="6" y1="12" x2="22" y2="12" class="thin-outline" />
+        <line x1="6" y1="20" x2="22" y2="20" class="thin-outline" />
+        <!-- Exploding crack -->
+        <path d="M 0 30 L 14 36 L 28 30" fill="none" class="outline" />
+        <!-- Spark/Boom marks -->
+        <path d="M 38 10 L 28 20 M 36 45 L 28 38" fill="none" class="thin-outline" />
+    </g>
+
+    <!-- Juggled Object 5: Floppy Disk (Top Right) -->
+    <g transform="translate(340, 110) rotate(-15)">
+        <rect x="0" y="0" width="30" height="30" rx="3" class="fill-green outline" />
+        <rect x="5" y="8" width="20" height="18" rx="1" class="fill-white outline" />
+        <line x1="8" y1="12" x2="22" y2="12" class="thin-outline" />
+        <rect x="8" y="0" width="14" height="6" class="fill-cream outline" />
+    </g>
+
+    <!-- Juggled Object 6: Old Keyboard (Bottom Right) -->
+    <g transform="translate(310, 350) rotate(15)">
+        <rect x="0" y="0" width="65" height="20" rx="4" class="fill-pink outline" />
+        <!-- key grid lines -->
+        <line x1="12" y1="0" x2="12" y2="20" class="thin-outline" />
+        <line x1="24" y1="0" x2="24" y2="20" class="thin-outline" />
+        <line x1="36" y1="0" x2="36" y2="20" class="thin-outline" />
+        <line x1="48" y1="0" x2="48" y2="20" class="thin-outline" />
+    </g>
+
+    <!-- Whimsical Space Doodle Decorations (from the reference sheet) -->
+    <!-- 4-point cartoon stars -->
+    <g transform="translate(60, 90) scale(0.6)">
+        <path d="M 0 -15 Q 0 0 15 0 Q 0 0 0 15 Q 0 0 -15 0 Q 0 0 0 -15" class="fill-green outline" />
+    </g>
+    <g transform="translate(420, 170) scale(0.8)">
+        <path d="M 0 -15 Q 0 0 15 0 Q 0 0 0 15 Q 0 0 -15 0 Q 0 0 0 -15" class="fill-pink outline" />
+    </g>
+    <g transform="translate(250, 125) scale(0.4)">
+        <path d="M 0 -15 Q 0 0 15 0 Q 0 0 0 15 Q 0 0 -15 0 Q 0 0 0 -15" class="fill-cream outline" />
+    </g>
+    <g transform="translate(190, 360) scale(0.5)">
+        <path d="M 0 -15 Q 0 0 15 0 Q 0 0 0 15 Q 0 0 -15 0 Q 0 0 0 -15" class="fill-blue outline" />
+    </g>
+
+    <!-- Little Saturn Planet -->
+    <g transform="translate(430, 370) rotate(-15)">
+        <circle cx="0" cy="0" r="14" class="fill-green outline" />
+        <ellipse cx="0" cy="0" rx="22" ry="5" fill="none" class="outline" />
+    </g>
+
+    <!-- Sparkles and explosion smoke rings -->
+    <circle cx="210" cy="220" r="2.5" class="fill-navy" />
+    <circle cx="280" cy="260" r="2.5" class="fill-navy" />
+    <circle cx="220" cy="310" r="3" class="fill-navy" />
+    <circle cx="160" cy="180" r="2" class="fill-navy" />
+</svg>

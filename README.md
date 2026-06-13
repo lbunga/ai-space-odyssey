@@ -20,8 +20,19 @@ The Voyager-1 module details the introductory phase of our journey:
 * **Cohort Knowledge Archive (Log 6)**: A massive data core vault integrating **180 glossary terms** from the bootcamp glossary PDF. Tap into memory nodes across LLM Foundations, Agentic AI, and Production Readiness. Supports click-to-decrypt terms, search bar filters, and clipboard telemetry copying.
 * **Orbit Established (Log 7)**: Captain's stats summarizing cohort telemetry coordinates mapped, transmissions logged, projects deployed, and modules scanned.
 
-### Voyages 2 through 7
-Locked navigation compartments prepared to boot up and receive incoming data logs from subsequent weeks as the hyperdrive initiates.
+### Voyage 2: Week 2 RAG & Agentic Systems
+The Voyager-2 module details our deep dive into grounding AI agents:
+* **Navigating the RAG Nebula (Log 1)**: Learning how to ground AI reasoning in external, proprietary databanks to ensure accurate, hallucination-free generation.
+* **Encounters with Guest Experts (Log 2)**: Domain transmissions from **Arjun Patel** (Pinecone) on vector databases at scale and **Logan Markewich** (LlamaIndex) on advanced indexing and query routing.
+* **Key Waypoints (Log 3)**: Core RAG concepts including Retrieval-Augmented Generation, Context Engineering, Text Embeddings, and Agentic RAG loops.
+* **Deep Dive Discoveries (Log 4)**: In-depth analysis of Chunking Strategies, Advanced Retrieval/Reranking, GraphRAG with Neo4j, and RAG/Vision Evaluations.
+* **The Test Flight (Log 5)**: A dual-pipeline RAG showdown application comparing **Graph RAG (Neo4j)** vs **Vector RAG (Pinecone)** on e-commerce supply chain data, supporting dynamic model hot-swapping and Cypher arrow corrections.
+* **Cohort Knowledge Archive (Log 6)**: An interactive Week 2 glossary vault cataloging RAG terms across 3 main pillars: RAG Architectures, Retrieval & Indexing, and Context & Memory.
+* **Databanks & Resources Captured (Log 7)**: Syncing RAG research papers, frameworks (LangChain/LlamaIndex), and evaluation tools (Ragas/Promptfoo).
+* **Mission Objectives Achieved (Log 8)**: Recap of skills in building ingestion pipelines, optimizing hybrid search, deploying agentic flows, and conducting LLM-as-a-judge evaluations.
+
+### Voyages 3 through 7
+Locked navigation compartments prepared to boot up and receive incoming data logs as the hyperdrive initiates.
 
 ---
 

@@ -246,12 +246,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update HUD Header and Hero Information
             if (missionTitle) missionTitle.textContent = `VOYAGER-${selectedVoyage}`;
             
-            if (selectedVoyage === '1') {
+            if (selectedVoyage === '1' || selectedVoyage === '2') {
                 if (systemStatusValue) {
-                    systemStatusValue.textContent = 'WEEK 1 ACTIVE';
+                    systemStatusValue.textContent = `WEEK ${selectedVoyage} ACTIVE`;
                     systemStatusValue.style.color = 'var(--neon-green)';
                 }
-                if (heroBadge) heroBadge.textContent = 'MISSION SUMMARY: WEEK 1';
+                if (heroBadge) heroBadge.textContent = `MISSION SUMMARY: WEEK ${selectedVoyage}`;
                 if (orbitalTracker) orbitalTracker.style.display = 'block';
             } else {
                 if (systemStatusValue) {
@@ -778,6 +778,327 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize with first pillar
     if (document.getElementById('chapter-knowledge-archive')) {
         renderSubcategories('llm');
+    }
+
+    // ==========================================================================
+    // 9. COHORT KNOWLEDGE ARCHIVE (WEEK 2 GLOSSARY VAULT) DATA & LOGIC
+    // ==========================================================================
+
+    const glossaryDataV2 = {
+        rag: {
+            title: 'RAG Architectures',
+            subcategories: {
+                'rag-basics': {
+                    label: 'RAG Basics',
+                    terms: [
+                        { name: 'Retrieval-Augmented Generation (RAG)', definition: 'A system that looks up relevant information in a private or external corpus at query time, inserts that text into the LLM\'s prompt, and uses it to ground the generated answer.' },
+                        { name: 'HyDE (Hypothetical Document Embeddings)', definition: 'A technique that takes a user query, uses an LLM to generate a fake "ideal answer" (a hypothesis), and then embeds that fake answer to search the vector database.' }
+                    ]
+                },
+                'advanced-rag': {
+                    label: 'Advanced RAG',
+                    terms: [
+                        { name: 'Graph RAG', definition: 'A system that models a document corpus as a knowledge graph of entities and relationships, allowing the LLM to retrieve information by traversing connected edges to answer complex, multi-hop questions.' },
+                        { name: 'Multimodal RAG', definition: 'A RAG system capable of retrieving and reasoning across multiple data formats, including text, images, video, audio, and code.' },
+                        { name: 'Branched RAG', definition: 'An architecture that retrieves information across multiple different sources (such as semantic search, keyword search, and SQL databases) and then merges the results.' }
+                    ]
+                },
+                'agentic-rag': {
+                    label: 'Agentic & Dynamic RAG',
+                    terms: [
+                        { name: 'Agentic RAG', definition: 'A system where retrieval is embedded in a multi-agent workflow (planner, retriever, critic). Instead of a one-shot query, the AI uses a "think-act-observe" loop to autonomously decide if it has gathered enough context or if it needs to search again.' },
+                        { name: 'Adaptive RAG', definition: 'A system that dynamically chooses the best retrieval strategy (dense, sparse, or multi-hop) on a per-query basis.' },
+                        { name: 'Corrective RAG (CRAG)', definition: 'A RAG architectural pattern where the LLM critiques the retrieved results and corrects any errors before generating the final answer.' },
+                        { name: 'Self-RAG', definition: 'An architecture where the model utilizes a critic and generator loop to self-check retrieved passages, reducing hallucinations.' }
+                    ]
+                }
+            }
+        },
+        retrieval: {
+            title: 'Retrieval & Indexing',
+            subcategories: {
+                'vector-search': {
+                    label: 'Vector Search',
+                    terms: [
+                        { name: 'Vector Database', definition: 'A specialized database designed to store millions of embeddings and their metadata, optimized to rapidly return the closest vectors to a user\'s query.' },
+                        { name: 'Embedding (Text Embedding)', definition: 'A numerical representation (a vector) that captures the semantic meaning of a piece of text. Texts with similar meanings map to vectors that are close together in dimensional space, while different meanings are placed far apart.' },
+                        { name: 'Contrastive Learning', definition: 'The training method for embedding models where the neural net is shown millions of text pairs labeled as "similar" or "different." The model adjusts its weights to pull similar pairs close together and push different pairs far apart.' },
+                        { name: 'Approximate Nearest-Neighbour (ANN)', definition: 'An index used within vector databases to provide log-time, extremely fast search to find the neighbourhood of vectors closest to a query.' }
+                    ]
+                },
+                'search-algorithms': {
+                    label: 'Search Algorithms',
+                    terms: [
+                        { name: 'Dense Retrieval', definition: 'A search method that encodes both the query and the chunks into vectors to find matches based on semantic meaning (via cosine similarity), allowing the system to match synonyms and paraphrased text.' },
+                        { name: 'Sparse Retrieval (BM25)', definition: 'A classic keyword search method that represents documents as sparse vectors (one dimension per word in the vocabulary) to perfectly match exact terms, acronyms, or IDs.' },
+                        { name: 'Hybrid Retrieval', definition: 'A search pipeline that combines the strengths of dense (vector/semantic) retrieval with sparse (keyword/BM25) retrieval to maximize recall.' },
+                        { name: 'Reciprocal Rank Fusion (RRF)', definition: 'A mathematical formula—score(doc) = 1 / (k + rank)—used in hybrid search to seamlessly merge the ranked lists from dense retrieval and sparse retrieval.' }
+                    ]
+                },
+                'advanced-retrieval': {
+                    label: 'Advanced Retrieval',
+                    terms: [
+                        { name: 'Bi-encoder', definition: 'A retrieval model that encodes a user\'s query and the document chunks separately. It is fast enough to scan millions of documents in milliseconds, but lacks the high precision of models that read the query and chunk together.' },
+                        { name: 'Cross-encoder', definition: 'A reranking model that feeds both the query and the chunk into the model together, allowing it to evaluate them simultaneously. It outputs a highly precise relevance score but is computationally slow, usually only running on the top 50 results.' },
+                        { name: 'ColBERT (Multi-vector)', definition: 'An advanced retrieval strategy that stores one vector per token instead of a single vector per chunk, evaluating matches by summing the best per-token matches ("MaxSim").' },
+                        { name: 'Cypher', definition: 'A query language used to search graph databases by describing the specific pattern or shape of the relationships you want to find (e.g., nodes connected by specific edges).' }
+                    ]
+                }
+            }
+        },
+        context: {
+            title: 'Context & Memory',
+            subcategories: {
+                'chunking-strategies': {
+                    label: 'Chunking Strategies',
+                    terms: [
+                        { name: 'Semantic Chunking', definition: 'A chunking strategy that splits documents based on meaning rather than token limits. It embeds individual sentences and cuts the text where a drop in cosine similarity indicates a shift in topic.' },
+                        { name: 'Parent-child trick (Small-to-Big Retrieval)', definition: 'A structural chunking strategy where very small chunks (e.g., 150 tokens) are embedded to ensure precise search matches, but the larger parent chunk (e.g., 1000 tokens) is passed to the LLM to provide adequate reading context.' }
+                    ]
+                },
+                'context-management': {
+                    label: 'Context Management',
+                    terms: [
+                        { name: 'Context Engineering', definition: 'The discipline of deliberately curating exactly what an LLM sees in its context window during a given turn. This goes beyond the prompt to include retrieved documents, memory, conversation history, tool outputs, and structured schemas.' },
+                        { name: 'Context Rot', definition: 'A phenomenon where an LLM\'s output quality decays as its context window gets longer, causing the model to become repetitive, forgetful, and less precise.' },
+                        { name: 'Contextual Extraction', definition: 'A context compression technique where an LLM is asked to analyze a chunk of text and output only the specific sentences that are relevant to the user\'s query.' },
+                        { name: 'Lost in the Middle', definition: 'A known limitation of LLMs where the model\'s accuracy drops significantly when trying to process information located in the middle of a long prompt or context window.' },
+                        { name: 'Prompt Compression', definition: 'A technique that drops low-information or filler tokens from the context to save space, maintaining the original order and meaning while reducing token count.' }
+                    ]
+                },
+                'memory-systems': {
+                    label: 'Memory Systems',
+                    terms: [
+                        { name: 'Long-term Memory', definition: 'Persistent memory scoped to a specific user across all sessions, often stored in a vector database or KV store to track facts, preferences, and past interactions.' },
+                        { name: 'Short-term Memory', definition: 'In-memory storage scoped to the current conversation session, tracking the recent message history, agent thoughts, and tool results.' },
+                        { name: 'Working Memory', definition: 'The memory scoped strictly to the current turn of an agent, bounded by the LLM\'s token limit, which includes the prompt, retrieved chunks, and the latest tool outputs.' }
+                    ]
+                },
+                'evaluation': {
+                    label: 'Evaluation & Quality',
+                    terms: [
+                        { name: 'Golden Dataset', definition: 'A critical evaluation tool consisting of a curated ground truth set of questions, expected answers, and expected source documents used to measure the quality of a RAG pipeline.' }
+                    ]
+                }
+            }
+        }
+    };
+
+    // 10. Cohort Knowledge Archive Interactions (Week 2)
+    const pillarV2Buttons = document.querySelectorAll('.pillar-v2-btn');
+    const subcategoriesV2Container = document.getElementById('archive-v2-subcategories');
+    const consoleV2DefaultMsg = document.getElementById('console-v2-default-msg');
+    const termV2DetailsView = document.getElementById('term-v2-details-view');
+    const termV2Title = document.getElementById('term-v2-title');
+    const termV2Badge = document.getElementById('term-v2-badge');
+    const termV2Definition = document.getElementById('term-v2-definition');
+    const termV2SubCategory = document.getElementById('term-v2-sub-category');
+    const btnV2CopyDefinition = document.getElementById('btn-v2-copy-definition');
+    const notesV2Section = document.getElementById('glossary-v2-notes-section');
+    const notesV2ScrollList = document.getElementById('notes-v2-scroll-list');
+    const searchV2Input = document.getElementById('archive-v2-search');
+
+    let activeV2Pillar = 'rag';
+    let activeV2Subcategory = '';
+    let selectedV2Term = null;
+
+    const renderV2Subcategories = (pillarId) => {
+        if (!subcategoriesV2Container) return;
+        subcategoriesV2Container.innerHTML = '';
+        const subcats = glossaryDataV2[pillarId].subcategories;
+        
+        Object.keys(subcats).forEach((subcatKey, idx) => {
+            const subcat = subcats[subcatKey];
+            const chip = document.createElement('button');
+            chip.className = 'subcategory-chip';
+            if (idx === 0) {
+                chip.classList.add('active');
+                activeV2Subcategory = subcatKey;
+            }
+            chip.textContent = subcat.label;
+            chip.setAttribute('data-subcat', subcatKey);
+            
+            chip.addEventListener('click', () => {
+                playClick();
+                subcategoriesV2Container.querySelectorAll('.subcategory-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                activeV2Subcategory = subcatKey;
+                if (searchV2Input) searchV2Input.value = '';
+                renderV2TermsForCategory(pillarId, subcatKey);
+            });
+            
+            subcategoriesV2Container.appendChild(chip);
+        });
+
+        if (activeV2Subcategory) {
+            renderV2TermsForCategory(pillarId, activeV2Subcategory);
+        }
+    };
+
+    const showV2TermDetails = (term, pillarName, subcategoryLabel) => {
+        if (!term) return;
+        selectedV2Term = term;
+        if (consoleV2DefaultMsg) consoleV2DefaultMsg.style.display = 'none';
+        if (termV2DetailsView) termV2DetailsView.style.display = 'flex';
+        
+        if (termV2Title) termV2Title.textContent = term.name;
+        if (termV2Badge) termV2Badge.textContent = pillarName.toUpperCase();
+        if (termV2Definition) termV2Definition.textContent = term.definition;
+        if (termV2SubCategory) termV2SubCategory.textContent = `Subcategory: ${subcategoryLabel}`;
+        
+        if (btnV2CopyDefinition) {
+            btnV2CopyDefinition.innerHTML = `
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                COPY TELEMETRY
+            `;
+            btnV2CopyDefinition.classList.remove('copied');
+        }
+
+        if (notesV2ScrollList) {
+            notesV2ScrollList.querySelectorAll('.note-card').forEach(card => {
+                const h5 = card.querySelector('h5');
+                if (h5 && h5.textContent === term.name) {
+                    card.classList.add('active-term');
+                } else {
+                    card.classList.remove('active-term');
+                }
+            });
+        }
+    };
+
+    const renderV2TermsForCategory = (pillarId, subcatKey) => {
+        if (!notesV2ScrollList || !notesV2Section) return;
+        notesV2ScrollList.innerHTML = '';
+        notesV2Section.style.display = 'flex';
+        
+        const pillar = glossaryDataV2[pillarId];
+        const subcat = pillar.subcategories[subcatKey];
+        const terms = subcat.terms;
+
+        terms.forEach((term, idx) => {
+            const card = document.createElement('div');
+            card.className = 'note-card';
+            if (idx === 0) {
+                card.classList.add('active-term');
+                showV2TermDetails(term, pillar.title, subcat.label);
+            }
+
+            card.innerHTML = `
+                <h5>${term.name}</h5>
+                <p>${term.definition.substring(0, 95)}...</p>
+            `;
+
+            card.addEventListener('click', () => {
+                playClick();
+                showV2TermDetails(term, pillar.title, subcat.label);
+            });
+
+            notesV2ScrollList.appendChild(card);
+        });
+
+        notesV2ScrollList.scrollTop = 0;
+    };
+
+    if (btnV2CopyDefinition) {
+        btnV2CopyDefinition.addEventListener('click', () => {
+            if (!selectedV2Term) return;
+            navigator.clipboard.writeText(`${selectedV2Term.name}: ${selectedV2Term.definition}`).then(() => {
+                playSuccess();
+                btnV2CopyDefinition.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    COPIED SECURELY!
+                `;
+                btnV2CopyDefinition.classList.add('copied');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        });
+    }
+
+    if (searchV2Input) {
+        searchV2Input.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            if (!query) {
+                subcategoriesV2Container.querySelectorAll('.subcategory-chip').forEach(c => {
+                    if (c.classList.contains('active')) {
+                        const subcatKey = c.getAttribute('data-subcat');
+                        renderV2TermsForCategory(activeV2Pillar, subcatKey);
+                    }
+                });
+                return;
+            }
+
+            const results = [];
+            Object.keys(glossaryDataV2).forEach(pillarKey => {
+                const pillar = glossaryDataV2[pillarKey];
+                Object.keys(pillar.subcategories).forEach(subcatKey => {
+                    const subcat = pillar.subcategories[subcatKey];
+                    subcat.terms.forEach(term => {
+                        if (term.name.toLowerCase().includes(query) || term.definition.toLowerCase().includes(query)) {
+                            results.push({
+                                term,
+                                pillarTitle: pillar.title,
+                                subcatLabel: subcat.label
+                            });
+                        }
+                    });
+                });
+            });
+
+            if (!notesV2ScrollList) return;
+            notesV2ScrollList.innerHTML = '';
+            subcategoriesV2Container.querySelectorAll('.subcategory-chip').forEach(c => c.classList.remove('active'));
+
+            if (results.length === 0) {
+                notesV2ScrollList.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-secondary); font-family: monospace;">
+                        <p>> NO CORRESPONDING TELEMETRY FOUND FOR "${query.toUpperCase()}"</p>
+                    </div>
+                `;
+                if (consoleV2DefaultMsg) consoleV2DefaultMsg.style.display = 'flex';
+                if (termV2DetailsView) termV2DetailsView.style.display = 'none';
+                return;
+            }
+
+            results.forEach((res, idx) => {
+                const card = document.createElement('div');
+                card.className = 'note-card';
+                if (idx === 0) {
+                    card.classList.add('active-term');
+                    showV2TermDetails(res.term, res.pillarTitle, res.subcatLabel);
+                }
+
+                card.innerHTML = `
+                    <h5>${res.term.name}</h5>
+                    <span style="font-size: 0.75rem; color: var(--neon-purple); display: block; margin-bottom: 0.2rem; font-family: var(--font-heading);">${res.subcatLabel}</span>
+                    <p>${res.term.definition.substring(0, 95)}...</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    playClick();
+                    showV2TermDetails(res.term, res.pillarTitle, res.subcatLabel);
+                });
+
+                notesV2ScrollList.appendChild(card);
+            });
+
+            notesV2ScrollList.scrollTop = 0;
+        });
+    }
+
+    pillarV2Buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            playClick();
+            pillarV2Buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeV2Pillar = btn.getAttribute('data-pillar');
+            if (searchV2Input) searchV2Input.value = '';
+            renderV2Subcategories(activeV2Pillar);
+        });
+    });
+
+    if (document.getElementById('chapter-v2-knowledge-archive')) {
+        renderV2Subcategories('rag');
     }
 });
 

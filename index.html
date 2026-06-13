@@ -380,33 +380,303 @@
         </section>
         </div><!-- End of Voyage 1 Section -->
 
-        <!-- Voyage 2 Section (Locked) -->
+        <!-- Voyage 2 Section -->
         <div class="voyage-section" id="voyage-section-2" style="display: none;">
-            <div class="locked-voyage-container">
-                <div class="locked-card">
-                    <div class="lock-icon-container">
-                        <span class="lock-radar-pulse"></span>
-                        <svg class="lock-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <!-- Chapter 1: Exec Summary -->
+            <section class="chapter-card left-align" id="chapter-rag-nebula">
+                <div class="card-content">
+                    <div class="chapter-num">LOG 01 / 08</div>
+                    <h2>Navigating the RAG Nebula</h2>
+                    <div class="tag-row">
+                        <span class="tag alert">EXECUTIVE SUMMARY</span>
+                        <span class="tag">AGENTIC SYSTEMS</span>
                     </div>
-                    <h2>Voyage 2: Telemetry Encrypted</h2>
-                    <span class="status-badge danger">STANDBY - AWAITING WEEK 2 KEY</span>
-                    <p class="locked-desc">Mission details will be updated once Voyage 2 journey initiates. Standby for Flight Command coordinates.</p>
+                    <p>Captain's Log, Stardate 2026-06-12. This week, our crew departed from the basic confines of standard Large Language Models (LLMs)—which are limited by their pre-training cutoff dates and propensity for hallucinations—to explore the expansive territories of Retrieval-Augmented Generation (RAG).</p>
+                    <p>The primary objective of our mission was to master how to ground AI reasoning in our own external, proprietary databanks to ensure that our systems generate fresh, traceable, and highly accurate insights.</p>
+                    <p>Building a reliable AI system requires precision engineering, not just blindly stuffing a context window (which leads to the "lost in the middle" phenomenon). We employed rigorous Context Engineering to carefully curate the information our AI agents consume, enabling autonomous multi-step problem solving.</p>
+                </div>
+                <div class="card-visual">
+                    <img src="assets/scene2.png" alt="Spaceship flying towards a glowing nebula of data" class="doodle-img" loading="lazy">
+                </div>
+            </section>
+
+            <!-- Chapter 2: Guest Lectures -->
+            <section class="chapter-card right-align" id="chapter-v2-guests">
+                <div class="card-visual">
+                    <img src="assets/scene4.png" alt="Holograms transmitting data" class="doodle-img" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="chapter-num">LOG 02 / 08</div>
+                    <h2>Encounters with Guest Experts</h2>
+                    <div class="tag-row">
+                        <span class="tag guest">GUEST LECTURES</span>
+                        <span class="tag">DOMAIN MASTERS</span>
+                    </div>
+                    <p>We received transmissions from two prominent domain experts guiding our navigation through these complex RAG and Agentic concepts:</p>
                     
-                    <div class="terminal-widget" style="max-width: 500px; margin: 2rem auto 0 auto;">
+                    <div class="hologram-grid">
+                        <div class="hologram-card">
+                            <div class="hologram-avatar"><span class="hologram-scanline"></span><div class="avatar-glow">AP</div></div>
+                            <div class="hologram-info">
+                                <h4>Arjun Patel</h4>
+                                <span class="hologram-org">Pinecone</span>
+                                <p>Shared how to improve RAG using Pinecone to transition AI from guessing to providing grounded answers that cite sources. Pinecone acts as a fully managed, scalable retrieval database for vector and full-text search. Highlighted hybrid search—combining dense vector semantic ranking with BM25 keyword scoring in a single query—and emphasized query analysis, proper preprocessing, and benchmarking retrieval techniques against real user questions.</p>
+                            </div>
+                        </div>
+                        <div class="hologram-card">
+                            <div class="hologram-avatar"><span class="hologram-scanline"></span><div class="avatar-glow">LM</div></div>
+                            <div class="hologram-info">
+                                <h4>Logan Markewich</h4>
+                                <span class="hologram-org">LlamaIndex</span>
+                                <p>Introduced LiteParse, a fast, open-source library for low-latency, privacy-centric local document processing directly inside an agent's tool loop. Unlike LlamaParse, it runs strictly on-device, outputting spatial text in an ASCII grid so LLMs read tables natively. It also generates bounding boxes for precise visual citations, allowing agents to locally ingest complex documents and cite exact page spans.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 3: Key Waypoints -->
+            <section class="chapter-card left-align" id="chapter-v2-waypoints">
+                <div class="card-content" style="flex: 1 1 100%;">
+                    <div class="chapter-num">LOG 03 / 08</div>
+                    <h2>Key Waypoints (Core Concepts)</h2>
+                    <p>Our navigation systems locked onto four critical architectural patterns to ground our LLMs:</p>
+                    
+                    <div class="stats-grid" style="margin-top: 2rem;">
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Retrieval-Augmented Generation (RAG)</h4>
+                            <p style="font-size: 0.9rem; color: #aaa;">Retrieves relevant information from an external knowledge base and supplies it to an LLM as context. Grounds AI in factual, proprietary data, reducing hallucinations.</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Context Engineering</h4>
+                            <p style="font-size: 0.9rem; color: #aaa;">The discipline of deliberately curating exactly what an LLM sees in its finite context window. Prevents "context rot" and ensures AI remains focused and cost-efficient.</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Text Embeddings</h4>
+                            <p style="font-size: 0.9rem; color: #aaa;">High-dimensional vectors representing semantic meaning. Maps language into a spatial continuum, allowing semantic search that matches intent over exact keywords.</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Agentic RAG</h4>
+                            <p style="font-size: 0.9rem; color: #aaa;">LLMs act as orchestrators, utilizing a "Thought-Action-Observation" loop to dynamically route queries, call external tools, and decide if more retrieval is needed.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 4: Deep Dive Discoveries -->
+            <section class="chapter-card right-align" id="chapter-v2-deepdive">
+                <div class="card-content" style="flex: 1 1 100%;">
+                    <div class="chapter-num">LOG 04 / 08</div>
+                    <h2>Deep Dive Discoveries</h2>
+                    <div class="tag-row">
+                        <span class="tag primary">TECHNICAL PIPELINES</span>
+                        <span class="tag success">EVALUATIONS</span>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem;">
+                        <div style="background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-pink);">
+                            <h4 style="color: var(--neon-pink);">Chunking Strategies</h4>
+                            <p style="font-size: 0.95rem; margin-top: 0.5rem;">To prevent "vector mush," we split data into sharp chunks: <strong>Fixed-Size</strong> (fast), <strong>Semantic</strong> (shifts at natural boundaries), <strong>Structural</strong> (by Markdown/JSON), and <strong>Late Chunking</strong> (embedding entire documents first).</p>
+                        </div>
+                        <div style="background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-purple);">
+                            <h4 style="color: var(--neon-purple);">Advanced Retrieval & Reranking</h4>
+                            <p style="font-size: 0.95rem; margin-top: 0.5rem;">Fusing methods is critical. <strong>Hybrid Search</strong> combines Dense (semantic vectors) with Sparse (BM25 keyword) search, merged via <strong>Reciprocal Rank Fusion (RRF)</strong>. We further refine results using highly precise <strong>Cross-Encoder Reranking</strong>.</p>
+                        </div>
+                        <div style="background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-green);">
+                            <h4 style="color: var(--neon-green);">GraphRAG & Relational Data</h4>
+                            <p style="font-size: 0.95rem; margin-top: 0.5rem;">For multi-hop reasoning, we construct LLM-derived knowledge graphs. Extracting entities and relationships into graph DBs (like Neo4j) allows us to traverse edges via Cypher queries to answer holistic, global questions.</p>
+                        </div>
+                        <div style="background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-cyan);">
+                            <h4 style="color: var(--neon-cyan);">RAG and Vision Evaluations</h4>
+                            <p style="font-size: 0.95rem; margin-top: 0.5rem;">We synthesize "Golden Datasets" and use <strong>LLM-as-a-Judge</strong> (e.g., GPT-4) to score Groundedness and Relevance. For Vision models, we apply rigorous graded rubrics checking layout hierarchy and text rendering accuracy.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 5: The Test Flight -->
+            <section class="chapter-card right-align" id="chapter-v2-test-flight">
+                <div class="card-visual" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <img src="assets/RAGApp-screenshot-1-1.png" alt="Supply Chain RAG Dashboard Screenshot 1" class="doodle-img" loading="lazy" style="border-radius: 8px; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);">
+                    <img src="assets/RAGApp-screenshot-1-2.png" alt="Supply Chain RAG Dashboard Screenshot 2" class="doodle-img" loading="lazy" style="border-radius: 8px; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);">
+                </div>
+                <div class="card-content">
+                    <div class="chapter-num">LOG 05 / 08</div>
+                    <h2>The Test Flight: Supply Chain Graph vs Vector RAG</h2>
+                    <div class="tag-row">
+                        <span class="tag success">GRAPH RAG</span>
+                        <span class="tag">VECTOR SEARCH</span>
+                        <span class="tag primary">EVALUATION</span>
+                    </div>
+                    <p>We built a dual-pipeline RAG application comparing <strong>Graph RAG (Neo4j)</strong> against <strong>Vector RAG (Pinecone)</strong> on e-commerce fulfillment supply chain data. Using LangChain, LangGraph, and dynamic model switching (Nebius Nemotron, OpenAI), we evaluated them head-to-head.</p>
+                    <p><strong>Key Insight:</strong> Graph RAG decisively wins when answering multi-hop questions (e.g., tracing from orders to contracts to penalties), while Vector RAG excels at single-document semantic lookups.</p>
+                    
+                    <div class="dashboard-link-container" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                        <a href="https://github.com/lbunga/supply-chain-graph-vs-vector-rag.git" target="_blank" class="terminal-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; width: auto; padding: 0.8rem 1.8rem; border-radius: 8px; background: linear-gradient(135deg, var(--neon-purple) 0%, #7a00cc 100%); color: var(--bg-dark); font-family: var(--font-heading); font-weight: 700; box-shadow: 0 0 15px rgba(187, 0, 255, 0.3); transition: transform 0.2s, box-shadow 0.2s;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 2px;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            VIEW SOURCE CODE
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 6: Cohort Knowledge Archive (Interactive Glossary Reference) -->
+            <section class="chapter-card archive-layout" id="chapter-v2-knowledge-archive">
+                <div class="card-content">
+                    <div class="chapter-num">LOG 06 / 08</div>
+                    <h2>Cohort Knowledge Archive</h2>
+                    <div class="tag-row">
+                        <span class="tag primary">LEARNING ENGINE</span>
+                        <span class="tag success">ACTIVE REFERENCES</span>
+                        <span class="tag guest">GLOSSARY VAULT</span>
+                    </div>
+                    <p>Welcome to the Voyager-2 Data Core. Tap into the virtual memory modules below to scan and retrieve key learnings, architectural guidelines, and RAG principles mapped during Week 2 of our flight.</p>
+                    
+                    <div class="archive-container">
+                        <!-- Pillar Sidebar Selector -->
+                        <div class="archive-pillars">
+                            <button class="pillar-v2-btn active" data-pillar="rag">
+                                <span class="pillar-icon">🧠</span>
+                                <span class="pillar-label">RAG Architectures</span>
+                            </button>
+                            <button class="pillar-v2-btn" data-pillar="retrieval">
+                                <span class="pillar-icon">🔍</span>
+                                <span class="pillar-label">Retrieval & Indexing</span>
+                            </button>
+                            <button class="pillar-v2-btn" data-pillar="context">
+                                <span class="pillar-icon">💾</span>
+                                <span class="pillar-label">Context & Memory</span>
+                            </button>
+                        </div>
+
+                        <!-- Archive Body: Selector Chips & Details Display -->
+                        <div class="archive-main">
+                            <!-- Subcategories Grid -->
+                            <div class="subcategories-container" id="archive-v2-subcategories">
+                                <!-- Category chips will be rendered here by JS -->
+                            </div>
+                            
+                            <!-- Console Output Display -->
+                            <div class="console-output-wrapper">
+                                <div class="console-header">
+                                    <span class="console-dot red"></span>
+                                    <span class="console-dot yellow"></span>
+                                    <span class="console-dot green"></span>
+                                    <span class="console-title">telemetry_terminal_viewer.sh</span>
+                                    <div class="search-box-container">
+                                        <input type="text" id="archive-v2-search" placeholder="Search data bank...">
+                                    </div>
+                                </div>
+                                <div class="console-body">
+                                    <div class="console-welcome" id="console-v2-default-msg">
+                                        <span class="glow-text">> VOYAGER DATA BANK STANDBY...</span>
+                                        <p>Select any category chip above to fetch its vocabulary nodes. Click on individual nodes to decrypt their core definitions.</p>
+                                    </div>
+                                    
+                                    <!-- Term Details Container (Initially Hidden) -->
+                                    <div class="term-details-view" id="term-v2-details-view" style="display: none;">
+                                        <div class="term-header-row">
+                                            <h3 id="term-v2-title">Term Name</h3>
+                                            <span class="term-pillar-badge" id="term-v2-badge">RAG ARCHITECTURES</span>
+                                        </div>
+                                        <p class="term-definition" id="term-v2-definition">Term definition will be printed here...</p>
+                                        <div class="term-meta-actions">
+                                            <span class="term-category" id="term-v2-sub-category">Subcategory: RAG Basics</span>
+                                            <button class="terminal-btn-small" id="btn-v2-copy-definition">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                                COPY TELEMETRY
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Scrollable Glossary List -->
+                                    <div class="glossary-notes-section" id="glossary-v2-notes-section" style="display: none;">
+                                        <div class="notes-header">
+                                            <h4>📋 PILT MASTER LOG REFERENCE</h4>
+                                            <span class="pulse-active">REF-ACTIVE</span>
+                                        </div>
+                                        <div class="notes-scroll-container" id="notes-v2-scroll-list">
+                                            <!-- Full list of terms for the active subcategory -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 7: Databanks & Resources -->
+            <section class="chapter-card left-align" id="chapter-v2-databanks">
+                <div class="card-content" style="flex: 1 1 100%;">
+                    <div class="chapter-num">LOG 07 / 08</div>
+                    <h2>Databanks & Resources Captured</h2>
+                    <div class="tag-row">
+                        <span class="tag success">ARCHIVE SYNCED</span>
+                    </div>
+                    <p>Our ship's hold is now packed with critical research and frameworks:</p>
+                    <ul style="color: #ccc; margin-top: 1rem; line-height: 1.6; font-size: 0.95rem;">
+                        <li><strong>Papers:</strong> Dense Passage Retrieval (Karpukhin), RAG for Knowledge-Intensive NLP Tasks (Lewis).</li>
+                        <li><strong>Frameworks:</strong> LlamaIndex, LangChain, Weaviate Elysia, n8n (business workflows), Context Hub.</li>
+                        <li><strong>Evaluations:</strong> Ragas, Trulens, DeepEval, Promptfoo for CI-friendly scoring.</li>
+                        <li><strong>Models & Tools:</strong> MTEB Leaderboard, Chunkviz.</li>
+                    </ul>
+                    
+                    <div class="terminal-widget" style="margin-top: 2rem;">
                         <div class="terminal-header">
                             <span class="terminal-dot red"></span>
                             <span class="terminal-dot yellow"></span>
                             <span class="terminal-dot green"></span>
-                            <span class="terminal-title">voyage2_decrypt.sh</span>
+                            <span class="terminal-title">sync_w2_databanks.sh</span>
                         </div>
-                        <div class="terminal-body" style="text-align: left; min-height: auto; font-family: monospace;">
-                            <div class="terminal-line"><span class="prompt">$</span> ./decrypt_beacon --voyage=2</div>
-                            <div class="terminal-line comment"># Connecting to hyperdrive relay...</div>
-                            <div class="terminal-line success-text">> STATUS: SECURE SLEEP ACTIVE. AWAITING WEEK 2 DATA.</div>
+                        <div class="terminal-body" style="text-align: left; min-height: 120px; font-family: monospace;">
+                            <div class="terminal-line"><span class="prompt">$</span> ./chub sync --week 2</div>
+                            <div class="terminal-line comment"># Downloading Pinecone indexes & LlamaIndex schemas...</div>
+                            <div class="terminal-line success-text">> 100% | RAG Databanks successfully synced.</div>
+                            <div class="terminal-line success-text">> Evaluating Chunkviz overlays... OK.</div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <!-- Chapter 8: Week 2 Summary -->
+            <section class="chapter-card summary-layout" id="chapter-v2-summary">
+                <div class="chapter-num">LOG 08 / 08</div>
+                <h2>Mission Objectives Achieved</h2>
+                <div class="summary-hero-wrapper">
+                    <div class="summary-visual">
+                        <img src="assets/scene6.png" alt="Spaceship docked" class="doodle-img" loading="lazy">
+                    </div>
+                    <div class="summary-stats-panel">
+                        <h3>Captain's Log: Week 2 Complete</h3>
+                        <p>Voyager-2 has successfully established a new orbit. By the end of this week's expedition, the crew has acquired actionable skills to:</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-cyan);">Architect</span>
+                                <span class="stat-label">Full RAG Pipelines (Ingestion & Chunking)</span>
+                            </div>
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-green);">Optimize</span>
+                                <span class="stat-label">Information Retrieval & Reranking</span>
+                            </div>
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-pink);">Deploy</span>
+                                <span class="stat-label">Autonomous Agentic Workflows</span>
+                            </div>
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-purple);">Implement</span>
+                                <span class="stat-label">Agentic Evals (cosine, relevance, familiarity)</span>
+                            </div>
+                        </div>
+
+                        <div class="log-debrief">
+                            <strong>Mission Status:</strong> Agentic Workflows online. Context windows optimized. Memory grids stable. Awaiting Week 3 coordinates.
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
         <!-- Voyage 3 Section (Locked) -->

@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update HUD Header and Hero Information
             if (missionTitle) missionTitle.textContent = `VOYAGER-${selectedVoyage}`;
             
-            if (selectedVoyage === '1' || selectedVoyage === '2') {
+            if (selectedVoyage === '1' || selectedVoyage === '2' || selectedVoyage === '3' || selectedVoyage === '4') {
                 if (systemStatusValue) {
                     systemStatusValue.textContent = `WEEK ${selectedVoyage} ACTIVE`;
                     systemStatusValue.style.color = 'var(--neon-green)';
@@ -1099,6 +1099,1226 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (document.getElementById('chapter-v2-knowledge-archive')) {
         renderV2Subcategories('rag');
+    }
+
+    // ==========================================================================
+    // 10.5. COHORT KNOWLEDGE ARCHIVE (WEEK 4 GLOSSARY VAULT) DATA & LOGIC
+    // ==========================================================================
+
+    const glossaryDataV4 = {
+        math: {
+            title: 'Math & Classification',
+            subcategories: {
+                'basic-math': {
+                    label: 'Basic Math',
+                    terms: [
+                        { name: 'Accuracy', definition: 'Out of all cases, how many were correct. Formula: Right / Total. Easy to explain, but weak when evaluated on highly imbalanced datasets.' },
+                        { name: 'Precision', definition: 'When the model predicts a positive outcome, how often is it right. Formula: True Positives / (True Positives + False Positives). Optimize when false alarms are expensive.' },
+                        { name: 'Recall', definition: 'Of all actual positive cases, how many did the model identify. Formula: True Positives / (True Positives + False Negatives). Optimize when missing a positive case is high risk.' },
+                        { name: 'F1 Score', definition: 'A single performance metric balancing precision and recall. Formula: 2 × Precision × Recall / (Precision + Recall). Key when you need a balance of both.' },
+                        { name: 'Pass rate', definition: 'How often a model\'s output passes a deterministic programmatic checker. Crucial for JSON schemas, parser validity, and code syntax.' }
+                    ]
+                },
+                'classification-adv': {
+                    label: 'Advanced Classification',
+                    terms: [
+                        { name: 'Exact Match (EM)', definition: 'Measures whether the model\'s output exactly matches the gold label string. Standard in multiple choice, deterministic routing, and classification tasks.' },
+                        { name: 'Macro F1', definition: 'Averages the F1 score for each class individually, giving equal weight. Important when small minority classes are as critical as major ones.' },
+                        { name: 'Micro F1', definition: 'Pools all class decisions before computing F1. Measures overall volume performance; in single-label multiclass tasks, it often equals accuracy.' },
+                        { name: 'Balanced accuracy', definition: 'The average of recall scores across all classes. Highly recommended when classes are imbalanced and plain accuracy masks errors.' },
+                        { name: 'AUC / PR-AUC', definition: 'Area Under Curve metrics measuring ranking quality across probability thresholds. PR-AUC is more sensitive and accurate when positives are rare.' },
+                        { name: 'Calibration error', definition: 'Measures whether the model\'s confidence matches reality. If the model is 80% confident, it should be correct about 8 out of 10 times.' }
+                    ]
+                }
+            }
+        },
+        generation: {
+            title: 'Generation & Similarity',
+            subcategories: {
+                'similarity-metrics': {
+                    label: 'Similarity & Overlap',
+                    terms: [
+                        { name: 'BLEU', definition: 'Measures n-gram overlap with reference text. Historically popular for machine translation, but weak when multiple valid phrasings exist.' },
+                        { name: 'ROUGE-1/2/L', definition: 'Measures word overlap and longest common subsequence. Standard for summarization recall (verifying if key details were included).' },
+                        { name: 'METEOR', definition: 'Measures text overlap incorporating stemming and synonym dictionaries. More forgiving and human-aligned than BLEU for phrasing variations.' },
+                        { name: 'BERTScore', definition: 'Evaluates semantic similarity between tokens using contextual embeddings, capturing matching meaning even if different words are used.' },
+                        { name: 'Embedding cosine', definition: 'Measures the cosine of the angle between two embedding vectors. Essential for semantic matching, clustering, and duplicate checking.' },
+                        { name: 'Perplexity', definition: 'Measures how surprising a sequence of words is to a language model. Useful for fluency and language structure diagnostics.' }
+                    ]
+                },
+                'llm-judges': {
+                    label: 'LLM-as-a-Judge',
+                    terms: [
+                        { name: 'Relevance', definition: 'Measures how well the generated response directly answers the user query. Validates focus and usefulness, filtering out distractions.' },
+                        { name: 'Coherence', definition: 'Assesses whether the response makes logical sense as a cohesive whole. Crucial for long-form reasoning, summaries, and agent explanations.' },
+                        { name: 'Conciseness', definition: 'Measures if the agent answers the question without redundant bloat, evaluated via rubrics or strict token budgets.' },
+                        { name: 'Tone / style alignment', definition: 'Checks if the output matches specific brand voices, personas, or safety rules using graded rubrics.' },
+                        { name: 'Instruction following', definition: 'A pass/fail or graded assessment checking if the agent obeyed explicit format constraints (JSON, markdown, word count, exclusions).' },
+                        { name: 'Win rate', definition: 'How often output A is preferred over output B in pairwise LLM judging. Formula: wins / total comparisons.' }
+                    ]
+                }
+            }
+        },
+        grounding: {
+            title: 'RAG & Grounding',
+            subcategories: {
+                'rag-grounding': {
+                    label: 'RAG Evals',
+                    terms: [
+                        { name: 'Faithfulness', definition: 'Checks whether generated claims are supported strictly by retrieved documents. Critical for catching hallucinations.' },
+                        { name: 'Response Relevancy', definition: 'Checks if the final answer directly addresses the query. Grounded but irrelevant answers score low.' },
+                        { name: 'Context Precision', definition: 'Measures if retrieved chunks are highly relevant. High precision means minimal distracting or irrelevant context.' },
+                        { name: 'Context Recall', definition: 'Measures whether retrieved context contains all necessary evidence. If context recall is low, the generator lacks facts.' },
+                        { name: 'Citation accuracy', definition: 'Verifies whether cited sources in the response support the exact claims made. Crucial for legal, medical, and policy assistants.' },
+                        { name: 'Groundedness', definition: 'Measures if the output is anchored strictly in the provided documents rather than model pretraining memory.' }
+                    ]
+                },
+                'task-success-v4': {
+                    label: 'Task Success',
+                    terms: [
+                        { name: 'Code pass@k', definition: 'Measures if at least one of k generated code solutions passes functional tests. pass@1 is standard for production.' },
+                        { name: 'SQL execution accuracy', definition: 'Verifies if generated SQL queries run and return correct data compared to reference execution.' },
+                        { name: 'Tool-call accuracy', definition: 'Checks if correct tools are selected with correct parameters. Evaluated on selection accuracy and execution success.' },
+                        { name: 'Task completion rate', definition: 'Measures if the agent successfully achieved its end-to-end goal. Standard for browser automation and complex workflows.' },
+                        { name: 'Plan quality', definition: 'Graded metric checking if the generated plan is complete, ordered, feasible, and not overcomplicated.' },
+                        { name: 'Human escalation accuracy', definition: 'Measures if the model escalates to human agents when it should and resolves when it can, tracking false and missed escalations.' }
+                    ]
+                }
+            }
+        },
+        safety: {
+            title: 'Risk & Ops Metrics',
+            subcategories: {
+                'risk-metrics': {
+                    label: 'Risk & Safety',
+                    terms: [
+                        { name: 'Toxicity / hate', definition: 'Measures harmful, abusive, or biased content in inputs or outputs. Evaluated using safety classifier scoring.' },
+                        { name: 'Jailbreak success rate', definition: 'Measures how often safety guardrails are bypassed by adversarial prompts. Formula: successful attacks / total attacks.' },
+                        { name: 'PII leakage', definition: 'Tracks whether sensitive personal data (emails, credit cards, SSNs) appears in outputs. Measures exact and near-match leaks.' },
+                        { name: 'Refusal precision', definition: 'When the model refuses, was the refusal correct? Low precision means safe user queries are blocked.' },
+                        { name: 'Refusal recall', definition: 'Of unsafe inputs, how many were correctly refused. Low recall indicates unsafe responses allowed.' },
+                        { name: 'Bias / fairness gap', definition: 'Compares error rates across demographic groups. Simple form: group A error rate minus group B error rate.' }
+                    ]
+                },
+                'ops-metrics': {
+                    label: 'Ops & Cross-checks',
+                    terms: [
+                        { name: 'Latency', definition: 'Measures duration. Critical to track Time to First Token (TTFT), total generation duration, and tail latency (p95).' },
+                        { name: 'Cost per successful task', definition: 'Total spend divided by completed tasks. Essential for agents that use loop retries.' },
+                        { name: 'Containment / deflection', definition: 'How often AI resolves issues without human handoff. Must pair with quality filters.' },
+                        { name: 'Retry / repair rate', definition: 'How often the system must regenerate, retry tools, or ask humans to correct. Early reliability indicator.' },
+                        { name: 'Drift', definition: 'Metric change over time on a static eval set, run weekly to catch prompt, model, or traffic drift.' },
+                        { name: 'Judge agreement', definition: 'How often LLM judges and human raters give the same grade. Measured via agreement rate or Kappa.' }
+                    ]
+                }
+            }
+        }
+    };
+
+    // 10.6. Cohort Knowledge Archive Interactions (Week 4)
+    const pillarV4Buttons = document.querySelectorAll('.pillar-v4-btn');
+    const subcategoriesV4Container = document.getElementById('archive-v4-subcategories');
+    const consoleV4DefaultMsg = document.getElementById('console-v4-default-msg');
+    const termV4DetailsView = document.getElementById('term-v4-details-view');
+    const termV4Title = document.getElementById('term-v4-title');
+    const termV4Badge = document.getElementById('term-v4-badge');
+    const termV4Definition = document.getElementById('term-v4-definition');
+    const termV4SubCategory = document.getElementById('term-v4-sub-category');
+    const btnV4CopyDefinition = document.getElementById('btn-v4-copy-definition');
+    const notesV4Section = document.getElementById('glossary-v4-notes-section');
+    const notesV4ScrollList = document.getElementById('notes-v4-scroll-list');
+    const searchV4Input = document.getElementById('archive-v4-search');
+
+    let activeV4Pillar = 'math';
+    let activeV4Subcategory = '';
+    let selectedV4Term = null;
+
+    const renderV4Subcategories = (pillarId) => {
+        if (!subcategoriesV4Container) return;
+        subcategoriesV4Container.innerHTML = '';
+        const subcats = glossaryDataV4[pillarId].subcategories;
+        
+        Object.keys(subcats).forEach((subcatKey, idx) => {
+            const subcat = subcats[subcatKey];
+            const chip = document.createElement('button');
+            chip.className = 'subcategory-chip';
+            if (idx === 0) {
+                chip.classList.add('active');
+                activeV4Subcategory = subcatKey;
+            }
+            chip.textContent = subcat.label;
+            chip.setAttribute('data-subcat', subcatKey);
+            
+            chip.addEventListener('click', () => {
+                playClick();
+                subcategoriesV4Container.querySelectorAll('.subcategory-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                activeV4Subcategory = subcatKey;
+                if (searchV4Input) searchV4Input.value = '';
+                renderV4TermsForCategory(pillarId, subcatKey);
+            });
+            
+            subcategoriesV4Container.appendChild(chip);
+        });
+
+        if (activeV4Subcategory) {
+            renderV4TermsForCategory(pillarId, activeV4Subcategory);
+        }
+    };
+
+    const showV4TermDetails = (term, pillarName, subcategoryLabel) => {
+        if (!term) return;
+        selectedV4Term = term;
+        if (consoleV4DefaultMsg) consoleV4DefaultMsg.style.display = 'none';
+        if (termV4DetailsView) termV4DetailsView.style.display = 'flex';
+        
+        if (termV4Title) termV4Title.textContent = term.name;
+        if (termV4Badge) termV4Badge.textContent = pillarName.toUpperCase();
+        if (termV4Definition) termV4Definition.textContent = term.definition;
+        if (termV4SubCategory) termV4SubCategory.textContent = `Subcategory: ${subcategoryLabel}`;
+        
+        if (btnV4CopyDefinition) {
+            btnV4CopyDefinition.innerHTML = `
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                COPY TELEMETRY
+            `;
+            btnV4CopyDefinition.classList.remove('copied');
+        }
+
+        if (notesV4ScrollList) {
+            notesV4ScrollList.querySelectorAll('.note-card').forEach(card => {
+                const h5 = card.querySelector('h5');
+                if (h5 && h5.textContent === term.name) {
+                    card.classList.add('active-term');
+                } else {
+                    card.classList.remove('active-term');
+                }
+            });
+        }
+    };
+
+    const renderV4TermsForCategory = (pillarId, subcatKey) => {
+        if (!notesV4ScrollList || !notesV4Section) return;
+        notesV4ScrollList.innerHTML = '';
+        notesV4Section.style.display = 'flex';
+        
+        const pillar = glossaryDataV4[pillarId];
+        const subcat = pillar.subcategories[subcatKey];
+        const terms = subcat.terms;
+
+        terms.forEach((term, idx) => {
+            const card = document.createElement('div');
+            card.className = 'note-card';
+            if (idx === 0) {
+                card.classList.add('active-term');
+                showV4TermDetails(term, pillar.title, subcat.label);
+            }
+
+            card.innerHTML = `
+                <h5>${term.name}</h5>
+                <p>${term.definition.substring(0, 95)}...</p>
+            `;
+
+            card.addEventListener('click', () => {
+                playClick();
+                showV4TermDetails(term, pillar.title, subcat.label);
+            });
+
+            notesV4ScrollList.appendChild(card);
+        });
+
+        notesV4ScrollList.scrollTop = 0;
+    };
+
+    if (btnV4CopyDefinition) {
+        btnV4CopyDefinition.addEventListener('click', () => {
+            if (!selectedV4Term) return;
+            navigator.clipboard.writeText(`${selectedV4Term.name}: ${selectedV4Term.definition}`).then(() => {
+                playSuccess();
+                btnV4CopyDefinition.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    COPIED SECURELY!
+                `;
+                btnV4CopyDefinition.classList.add('copied');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        });
+    }
+
+    if (searchV4Input) {
+        searchV4Input.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            if (!query) {
+                subcategoriesV4Container.querySelectorAll('.subcategory-chip').forEach(c => {
+                    if (c.classList.contains('active')) {
+                        const subcatKey = c.getAttribute('data-subcat');
+                        renderV4TermsForCategory(activeV4Pillar, subcatKey);
+                    }
+                });
+                return;
+            }
+
+            const results = [];
+            Object.keys(glossaryDataV4).forEach(pillarKey => {
+                const pillar = glossaryDataV4[pillarKey];
+                Object.keys(pillar.subcategories).forEach(subcatKey => {
+                    const subcat = pillar.subcategories[subcatKey];
+                    subcat.terms.forEach(term => {
+                        if (term.name.toLowerCase().includes(query) || term.definition.toLowerCase().includes(query)) {
+                            results.push({
+                                term,
+                                pillarTitle: pillar.title,
+                                subcatLabel: subcat.label
+                            });
+                        }
+                    });
+                });
+            });
+
+            if (!notesV4ScrollList) return;
+            notesV4ScrollList.innerHTML = '';
+            subcategoriesV4Container.querySelectorAll('.subcategory-chip').forEach(c => c.classList.remove('active'));
+
+            if (results.length === 0) {
+                notesV4ScrollList.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-secondary); font-family: monospace;">
+                        <p>> NO CORRESPONDING TELEMETRY FOUND FOR "${query.toUpperCase()}"</p>
+                    </div>
+                `;
+                if (consoleV4DefaultMsg) consoleV4DefaultMsg.style.display = 'flex';
+                if (termV4DetailsView) termV4DetailsView.style.display = 'none';
+                return;
+            }
+
+            results.forEach((res, idx) => {
+                const card = document.createElement('div');
+                card.className = 'note-card';
+                if (idx === 0) {
+                    card.classList.add('active-term');
+                    showV4TermDetails(res.term, res.pillarTitle, res.subcatLabel);
+                }
+
+                card.innerHTML = `
+                    <h5>${res.term.name}</h5>
+                    <span style="font-size: 0.75rem; color: var(--neon-purple); display: block; margin-bottom: 0.2rem; font-family: var(--font-heading);">${res.subcatLabel}</span>
+                    <p>${res.term.definition.substring(0, 95)}...</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    playClick();
+                    showV4TermDetails(res.term, res.pillarTitle, res.subcatLabel);
+                });
+
+                notesV4ScrollList.appendChild(card);
+            });
+
+            notesV4ScrollList.scrollTop = 0;
+        });
+    }
+
+    pillarV4Buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            playClick();
+            pillarV4Buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeV4Pillar = btn.getAttribute('data-pillar');
+            if (searchV4Input) searchV4Input.value = '';
+            renderV4Subcategories(activeV4Pillar);
+        });
+    });
+
+    if (document.getElementById('chapter-v4-knowledge-archive')) {
+        renderV4Subcategories('math');
+    }
+
+    // ==========================================================================
+    // 11. VOYAGE 4 SIMULATOR INTERACTION LOGIC
+    // ==========================================================================
+    
+    const simProfiles = {
+        rag: {
+            title: 'RAG Knowledge System',
+            desc: 'Grounding AI reasoning in retrieval-augmented databanks to ensure factual, non-hallucinating responses.',
+            badge: 'RAG ACTIVE',
+            badgeClass: 'cyan',
+            metrics: [
+                'Faithfulness (verifying claims in context)',
+                'Response Relevancy (checking if answer addresses question)',
+                'Context Recall (checking if retrieved documents contain answer)',
+                'Context Precision (minimizing noise/distractions)',
+                'Latency (TTFT and total duration)'
+            ],
+            diagnosis: 'RAG DIAGNOSIS: If context recall is low, fix retrieval. If context precision is low, fix ranking/filtering. If both are good but faithfulness is low, fix generation, prompts, or model choice.',
+            evalRun: [
+                { text: 'Initialising evaluation pipeline for RAG system...', delay: 500, type: 'info' },
+                { text: 'Loading "Golden Dataset" (100 synthetic QA pairs)...', delay: 800, type: 'info' },
+                { text: 'Executing retrieval pipeline on Pinecone database...', delay: 1000, type: 'info' },
+                { text: 'Running LLM-as-a-Judge scans for Faithfulness & Relevancy...', delay: 1200, type: 'info' },
+                { text: 'Scanning for context leaks and hallucination thresholds...', delay: 800, type: 'info' },
+                { text: 'Evaluation complete. Reporting telemetry...', delay: 500, type: 'success' }
+            ],
+            scores: [
+                { name: 'Faithfulness', val: '96%', target: '>= 95%', fill: '96%' },
+                { name: 'Answer Relevancy', val: '91%', target: '>= 90%', fill: '91%' },
+                { name: 'Context Recall', val: '88%', target: '>= 90%', fill: '88%', warning: true },
+                { name: 'Context Precision', val: '94%', target: '>= 90%', fill: '94%' },
+                { name: 'p95 Latency', val: '420ms', target: '< 500ms', fill: '84%' }
+            ]
+        },
+        coding: {
+            title: 'Autonomous Coding Agent',
+            desc: 'Generating functional code, debugging errors, and resolving repository tasks autonomously.',
+            badge: 'AGENT ACTIVE',
+            badgeClass: 'green',
+            metrics: [
+                'Code pass@k (functional test pass rates)',
+                'Schema Validity (tool call parameter conformity)',
+                'Task Completion Rate (end-to-end issues resolved)',
+                'Plan Quality (judge-graded logical steps)',
+                'Cost per successful task'
+            ],
+            diagnosis: 'CODING DIAGNOSIS: If pass@k is low, verify test harnesses and enhance prompt constraints. If cost is high, implement semantic caching to intercept redundant test runs.',
+            evalRun: [
+                { text: 'Initialising software agent test harness...', delay: 500, type: 'info' },
+                { text: 'Loading SWE-bench target issues...', delay: 800, type: 'info' },
+                { text: 'Executing Agent loops (Thought -> Action -> Observe)...', delay: 1200, type: 'info' },
+                { text: 'Running generated scripts in sandbox container...', delay: 1000, type: 'info' },
+                { text: 'Running unit test validation checks...', delay: 900, type: 'info' },
+                { text: 'Test run complete. Telemetry compiled.', delay: 500, type: 'success' }
+            ],
+            scores: [
+                { name: 'Code pass@1', val: '82%', target: '>= 80%', fill: '82%' },
+                { name: 'Tool-call Accuracy', val: '97%', target: '>= 95%', fill: '97%' },
+                { name: 'Task Completion', val: '78%', target: '>= 75%', fill: '78%' },
+                { name: 'Plan Quality', val: '92%', target: '>= 90%', fill: '92%' },
+                { name: 'Cost per Task', val: '$0.084', target: '< $0.10', fill: '84%' }
+            ]
+        },
+        support: {
+            title: 'Customer Support Bot',
+            desc: 'Automating multi-turn customer dialogues, resolving billing queries, and executing account actions.',
+            badge: 'BOT ACTIVE',
+            badgeClass: 'purple',
+            metrics: [
+                'Containment / Deflection (resolving without humans)',
+                'Tone / Style brand compliance',
+                'Refusal Precision (avoiding false refusals)',
+                'PII Leakage checks',
+                'Human Escalation Accuracy'
+            ],
+            diagnosis: 'SUPPORT DIAGNOSIS: Keep Refusal Precision high to prevent blocking legitimate billing requests. Ensure PII scanner filters all account token outputs before they exit the buffer.',
+            evalRun: [
+                { text: 'Simulating 200 multi-turn user support interactions...', delay: 600, type: 'info' },
+                { text: 'Checking dialogue containment boundaries...', delay: 800, type: 'info' },
+                { text: 'Auditing brand tone compliance and sentiment...', delay: 1000, type: 'info' },
+                { text: 'Scanning customer transcripts for PII leaks...', delay: 1000, type: 'info' },
+                { text: 'Verifying escalation protocols...', delay: 700, type: 'info' },
+                { text: 'Verification complete. Publishing telemetry scores...', delay: 500, type: 'success' }
+            ],
+            scores: [
+                { name: 'Containment Rate', val: '86%', target: '>= 80%', fill: '86%' },
+                { name: 'Tone Compliance', val: '95%', target: '>= 95%', fill: '95%' },
+                { name: 'Refusal Precision', val: '98%', target: '>= 95%', fill: '98%' },
+                { name: 'PII Leakage Rate', val: '0%', target: '0%', fill: '100%' },
+                { name: 'Escalation Accuracy', val: '92%', target: '>= 90%', fill: '92%' }
+            ]
+        },
+        safety: {
+            title: 'Safety Shield Guardrail',
+            desc: 'Intercepting input prompt attacks (jailbreaks) and sanitizing model outputs for toxicity/unsafe topics.',
+            badge: 'SHIELD ACTIVE',
+            badgeClass: 'pink',
+            metrics: [
+                'Jailbreak Success Rate (defense bypasses)',
+                'Toxicity / Hate classification',
+                'Refusal Recall (blocking unsafe requests)',
+                'PII Leakage interception',
+                'Drift frequency checks'
+            ],
+            diagnosis: 'SAFETY DIAGNOSIS: If Refusal Recall is low, safety settings are too relaxed, allowing prompt injections. If Refusal Precision is low, guardrails are over-sensitive, blocking benign queries.',
+            evalRun: [
+                { text: 'Deploying red-teaming payload sweep...', delay: 500, type: 'info' },
+                { text: 'Injecting 500 adversarial jailbreak prompts...', delay: 900, type: 'info' },
+                { text: 'Evaluating output filter sensitivity...', delay: 800, type: 'info' },
+                { text: 'Measuring refusal rates on toxic inputs...', delay: 1000, type: 'info' },
+                { text: 'Checking drift metrics against baseline...', delay: 700, type: 'info' },
+                { text: 'Safety audit completed. Compiling scorecard.', delay: 500, type: 'success' }
+            ],
+            scores: [
+                { name: 'Jailbreak Defense', val: '100%', target: '100%', fill: '100%' },
+                { name: 'Refusal Recall', val: '99%', target: '>= 99%', fill: '99%' },
+                { name: 'Refusal Precision', val: '93%', target: '>= 95%', fill: '93%', warning: true },
+                { name: 'Toxicity Intercept', val: '100%', target: '100%', fill: '100%' },
+                { name: 'Drift Rate', val: '0.2%', target: '< 1.0%', fill: '98%' }
+            ]
+        },
+        multimodal: {
+            title: 'Multimodal Vision Assistant',
+            desc: 'Parsing layout structures in PDF slides, matching image content, and generating accurate textual descriptions.',
+            badge: 'VISION ACTIVE',
+            badgeClass: 'cyan',
+            metrics: [
+                'CLIPScore / VQA accuracy (image-text alignment)',
+                'Object Hallucination / CHAIR',
+                'Schema Validity (visual parser structures)',
+                'Completeness of text extraction',
+                'WER / CER (OCR errors)'
+            ],
+            diagnosis: 'VISION DIAGNOSIS: If CLIPScore is low, check if layout elements confuse the vision encoder. If Object Hallucination (CHAIR) is high, adjust decoding temperature downwards to anchor generation in pixels.',
+            evalRun: [
+                { text: 'Loading multimodal test deck (150 images & PDFs)...', delay: 500, type: 'info' },
+                { text: 'Running visual question answering (VQA) logs...', delay: 900, type: 'info' },
+                { text: 'Computing CLIPScore alignment indexes...', delay: 1000, type: 'info' },
+                { text: 'Executing CHAIR object hallucination checks...', delay: 800, type: 'info' },
+                { text: 'Measuring OCR error rates (WER/CER)...', delay: 1000, type: 'info' },
+                { text: 'Visual telemetry audit complete.', delay: 500, type: 'success' }
+            ],
+            scores: [
+                { name: 'CLIPScore', val: '88.5', target: '>= 85.0', fill: '88%' },
+                { name: 'CHAIR Index', val: '2.1%', target: '< 3.0%', fill: '93%' },
+                { name: 'Schema Validity', val: '99%', target: '>= 98%', fill: '99%' },
+                { name: 'Completeness', val: '96%', target: '>= 95%', fill: '96%' },
+                { name: 'OCR Word Error Rate', val: '1.8%', target: '< 2.0%', fill: '91%' }
+            ]
+        }
+    };
+
+    const simPickerBtns = document.querySelectorAll('.sim-picker-btn');
+    const simProfileTitle = document.getElementById('sim-profile-title');
+    const simProfileDesc = document.getElementById('sim-profile-desc');
+    const simProfileBadge = document.getElementById('sim-profile-badge');
+    const simMetricsList = document.getElementById('sim-metrics-list');
+    const simDiagnosisBox = document.getElementById('sim-diagnosis-box');
+    const btnRunSimEval = document.getElementById('btn-run-sim-eval');
+    const simTerminalStatus = document.getElementById('sim-terminal-status');
+    const simTerminalBody = document.getElementById('sim-terminal-body');
+    const scorecardV4 = document.getElementById('scorecard-v4');
+    const scoreGridV4 = document.getElementById('score-grid-v4');
+
+    let currentSimProfile = 'rag';
+
+    const loadSimProfile = (profileId) => {
+        const profile = simProfiles[profileId];
+        if (!profile) return;
+
+        currentSimProfile = profileId;
+
+        if (simProfileTitle) simProfileTitle.textContent = profile.title;
+        if (simProfileDesc) simProfileDesc.textContent = profile.desc;
+        
+        if (simProfileBadge) {
+            simProfileBadge.textContent = profile.badge;
+            simProfileBadge.className = `status-badge ${profile.badgeClass}`;
+            simProfileBadge.style.color = `var(--neon-${profile.badgeClass})`;
+            simProfileBadge.style.borderColor = `var(--neon-${profile.badgeClass})`;
+        }
+
+        if (simMetricsList) {
+            simMetricsList.innerHTML = '';
+            profile.metrics.forEach(m => {
+                const li = document.createElement('li');
+                li.textContent = m;
+                simMetricsList.appendChild(li);
+            });
+        }
+
+        if (simDiagnosisBox) {
+            simDiagnosisBox.textContent = profile.diagnosis;
+            simDiagnosisBox.style.borderLeftColor = `var(--neon-${profile.badgeClass})`;
+        }
+
+        if (scorecardV4) scorecardV4.style.display = 'none';
+        if (simTerminalStatus) {
+            simTerminalStatus.textContent = '> STANDBY';
+            simTerminalStatus.style.color = '#888';
+        }
+        if (simTerminalBody) {
+            simTerminalBody.innerHTML = `<div class="terminal-line comment" style="color: #666;"># Profile calibrated: ${profile.title}. Ready for execution diagnostic.</div>`;
+        }
+        if (btnRunSimEval) {
+            btnRunSimEval.disabled = false;
+            btnRunSimEval.style.opacity = '1';
+        }
+    };
+
+    simPickerBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            playClick();
+            simPickerBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const profileId = btn.getAttribute('data-profile');
+            loadSimProfile(profileId);
+        });
+    });
+
+    if (btnRunSimEval) {
+        btnRunSimEval.addEventListener('click', () => {
+            playClick();
+            btnRunSimEval.disabled = true;
+            btnRunSimEval.style.opacity = '0.5';
+            
+            if (simTerminalStatus) {
+                simTerminalStatus.textContent = '> RUNNING';
+                simTerminalStatus.style.color = 'var(--neon-cyan)';
+            }
+            if (simTerminalBody) {
+                simTerminalBody.innerHTML = '';
+            }
+            if (scorecardV4) scorecardV4.style.display = 'none';
+
+            const profile = simProfiles[currentSimProfile];
+            let stepIndex = 0;
+
+            const executeStep = () => {
+                if (stepIndex < profile.evalRun.length) {
+                    const step = profile.evalRun[stepIndex];
+                    const line = document.createElement('div');
+                    line.className = 'terminal-line';
+                    
+                    if (step.type === 'success') {
+                        line.style.color = 'var(--neon-green)';
+                        line.textContent = `> ${step.text}`;
+                    } else if (step.type === 'warning') {
+                        line.style.color = 'var(--neon-pink)';
+                        line.textContent = `⚠️ ${step.text}`;
+                    } else {
+                        line.style.color = '#ccc';
+                        line.textContent = `[EVAL] ${step.text}`;
+                    }
+                    
+                    if (simTerminalBody) {
+                        simTerminalBody.appendChild(line);
+                        simTerminalBody.scrollTop = simTerminalBody.scrollHeight;
+                    }
+
+                    stepIndex++;
+                    setTimeout(executeStep, step.delay);
+                } else {
+                    if (simTerminalStatus) {
+                        simTerminalStatus.textContent = '> COMPLETED';
+                        simTerminalStatus.style.color = 'var(--neon-green)';
+                    }
+                    
+                    renderScorecard(profile.scores);
+                    playSuccess();
+                    
+                    btnRunSimEval.disabled = false;
+                    btnRunSimEval.style.opacity = '1';
+                }
+            };
+
+            executeStep();
+        });
+    }
+
+    const renderScorecard = (scores) => {
+        if (!scoreGridV4 || !scorecardV4) return;
+        scoreGridV4.innerHTML = '';
+        
+        scores.forEach(s => {
+            const card = document.createElement('div');
+            card.className = 'score-card-v4';
+            
+            const valColor = s.warning ? 'var(--neon-pink)' : 'var(--neon-cyan)';
+            const barFillColor = s.warning ? 'var(--neon-pink)' : 'var(--neon-cyan)';
+            
+            card.innerHTML = `
+                <h5>${s.name}</h5>
+                <div class="score-val-row">
+                    <span class="score-val" style="color: ${valColor};">${s.val}</span>
+                    <span class="score-target">Target: ${s.target}</span>
+                </div>
+                <div class="score-bar-bg">
+                    <div class="score-bar-fill" style="width: 0%; background-color: ${barFillColor};"></div>
+                </div>
+            `;
+            
+            scoreGridV4.appendChild(card);
+            
+            setTimeout(() => {
+                const fill = card.querySelector('.score-bar-fill');
+                if (fill) fill.style.width = s.fill;
+            }, 100);
+        });
+
+        scorecardV4.style.display = 'block';
+    };
+
+    if (document.getElementById('chapter-v4-test-flight')) {
+        loadSimProfile('rag');
+    }
+
+    // ==========================================================================
+    // 12. COHORT KNOWLEDGE ARCHIVE (WEEK 3 GLOSSARY VAULT) DATA & LOGIC
+    // ==========================================================================
+
+    const glossaryDataV3 = {
+        concepts: {
+            title: 'Agent Concepts',
+            subcategories: {
+                'core-concepts': {
+                    label: 'Core Concepts',
+                    terms: [
+                        { name: 'AI Agent (Agentic System)', definition: 'An autonomous system that receives data, makes rational decisions, and acts within its environment to achieve specific goals by determining its own next steps in a loop. Unlike static chatbots, agents iteratively plan, use tools, and self-correct.' },
+                        { name: 'Workflow', definition: 'A system where LLMs and tools are orchestrated through predefined, hardcoded paths. Workflows offer predictability and consistency for well-defined tasks, whereas agents offer flexibility for open-ended ones.' },
+                        { name: 'ReAct', definition: 'An approach that synergizes reasoning (e.g., chain-of-thought prompting) and acting (e.g., action plan generation) in an interleaved manner, enabling the agent to handle exceptions and track subtasks.' },
+                        { name: 'Harness', definition: 'Refers to everything in an AI agent system except the underlying model itself (Agent = Model + Harness). Provides tools and loop control, using Guides (feedforward steering) and Sensors (feedback corrections).' },
+                        { name: 'Human-in-the-Loop (HITL)', definition: 'Incorporating human oversight to inspect, modify, or approve an agent\'s state and actions. Essential for high-stakes, low-confidence, or irreversible tasks.' }
+                    ]
+                },
+                'core-vocab': {
+                    label: 'Core Vocabulary',
+                    terms: [
+                        { name: 'Agent', definition: 'A system that receives a goal, picks actions, observes results, and dynamically decides its next step in a loop until the goal is met or resources are exhausted.' },
+                        { name: 'Chatbot', definition: 'A conversational system that answers one prompt and stops, without an iterative planner loop or dynamic tool execution.' },
+                        { name: 'Action', definition: 'A single decision the agent makes during its turn, which is typically executing a tool call.' },
+                        { name: 'Observation', definition: 'The result returned after an action is executed, providing new context for the agent\'s next reasoning turn.' },
+                        { name: 'Planner', definition: 'The model\'s reasoning step where it decides what action to take next to progress toward the overall goal.' },
+                        { name: 'Executor', definition: 'The underlying code or runtime that executes the planned action and returns the observation to the model.' },
+                        { name: 'State', definition: 'A structured tracking object containing everything the agent currently knows, including task progress, history, and tool results.' }
+                    ]
+                }
+            }
+        },
+        tools: {
+            title: 'Tools & Connectivity',
+            subcategories: {
+                'tool-calling': {
+                    label: 'Tool Calling',
+                    terms: [
+                        { name: 'Function Calling / Tool Calling', definition: 'The capability that provides models with a way to interface with external systems, run code, or access data outside their pretraining set.' },
+                        { name: 'Client Tools', definition: 'Tools that run locally within your application infrastructure, requiring your code to execute the operation and return the result to the model.' },
+                        { name: 'Server Tools', definition: 'Tools that execute directly on the model provider\'s server infrastructure (such as Anthropic\'s hosted web search or code execution environments).' }
+                    ]
+                },
+                'protocols': {
+                    label: 'Protocols & Frameworks',
+                    terms: [
+                        { name: 'Model Context Protocol (MCP)', definition: 'An open-source standard acting like a "USB-C port" for AI applications. Standardizes how Hosts connect to external Server data sources and tools.' },
+                        { name: 'Agent2Agent (A2A) Protocol', definition: 'An open protocol enabling communication and interoperability between different, opaque agentic applications without exposing internal proprietary logic.' },
+                        { name: 'MINT Framework', definition: 'Minimal Intelligence Necessary Tools. A design philosophy prioritizing starting with the simplest viable prompt before adding tools, state, or multi-agent orchestration.' },
+                        { name: 'ADLC', definition: 'Agent Development Lifecycle. The continuous process for building reliable agents: Scope, Prototype, Build, Evaluate, Deploy, Monitor & Improve.' }
+                    ]
+                }
+            }
+        },
+        patterns: {
+            title: 'Design Patterns',
+            subcategories: {
+                'architectures': {
+                    label: 'Architecture Patterns',
+                    terms: [
+                        { name: 'Prompt Chaining', definition: 'Breaking a task into a sequence of steps where each LLM call processes the output of the previous one, enhancing predictability.' },
+                        { name: 'Routing', definition: 'Classifying an input and directing it to a specialized follow-up task, downstream process, or smaller model.' },
+                        { name: 'Parallelization', definition: 'Having LLMs work simultaneously on subtasks. Includes Sectioning (independent tasks) and Voting (multiple runs for high-confidence agreement).' },
+                        { name: 'Orchestrator-Workers (Supervisor)', definition: 'A centralized multi-agent pattern where a supervisor coordinator agent breaks down tasks, delegates to specialized workers, and synthesizes results.' },
+                        { name: 'Evaluator-Optimizer (Critic-Reviewer)', definition: 'An iterative loop where one LLM generates a response, and another evaluates and critiques it until quality criteria are met.' }
+                    ]
+                },
+                'pattern-details': {
+                    label: 'Pattern Details',
+                    terms: [
+                        { name: 'Router Pattern', definition: 'An architecture where an initial classifier categorizes the user\'s request and dispatches it to the appropriate specialized tool or workflow.' },
+                        { name: 'Planner-Executor', definition: 'A design that splits tasks by using an expensive model to plan, and smaller, cheaper models to execute each step.' },
+                        { name: 'Supervisor Pattern', definition: 'A centralized multi-agent system where one coordinator routes work to various specialist agents and compiles outputs.' },
+                        { name: 'Reflection Pattern', definition: 'A "draft, critique, revise" loop where a generator agent produces an output and a reflector agent critiques it.' }
+                    ]
+                }
+            }
+        },
+        memory: {
+            title: 'Memory & Operations',
+            subcategories: {
+                'memory-types': {
+                    label: 'Memory Systems',
+                    terms: [
+                        { name: 'Working Memory', definition: 'Short-term, ephemeral memory that lives inside the current context window, storing active conversation history and tool results. Bounded by token limits.' },
+                        { name: 'Session Memory', definition: 'Key-value state and structured objects that persist specifically for the duration of an ongoing conversation or task.' },
+                        { name: 'Long-Term Memory', definition: 'Information that survives beyond a single session, stored persistently. Includes Semantic, Episodic, and Procedural memories.' }
+                    ]
+                },
+                'memory-defs': {
+                    label: 'Memory Definitions',
+                    terms: [
+                        { name: 'Semantic Memory', definition: 'Stable, atemporal facts, project knowledge, and user preferences stored persistently.' },
+                        { name: 'Episodic Memory', definition: 'Specific, time-indexed events and past actions (e.g., "refund processed on May 24").' },
+                        { name: 'Procedural Memory', definition: 'Learned workflows and "how-to" steps.' }
+                    ]
+                },
+                'ops': {
+                    label: 'Operations & Monitoring',
+                    terms: [
+                        { name: 'EDDOps', definition: 'Evaluation-Driven Development and Operations. A lifecycle approach unifying offline testing and online runtime monitoring.' },
+                        { name: 'AgentOps', definition: 'The operational infrastructure for monitoring, logging, and tracing an agent\'s execution steps and tool invocations.' }
+                    ]
+                }
+            }
+        }
+    };
+
+    // 12.5. Cohort Knowledge Archive Interactions (Week 3)
+    const pillarV3Buttons = document.querySelectorAll('.pillar-v3-btn');
+    const subcategoriesV3Container = document.getElementById('archive-v3-subcategories');
+    const consoleV3DefaultMsg = document.getElementById('console-v3-default-msg');
+    const termV3DetailsView = document.getElementById('term-v3-details-view');
+    const termV3Title = document.getElementById('term-v3-title');
+    const termV3Badge = document.getElementById('term-v3-badge');
+    const termV3Definition = document.getElementById('term-v3-definition');
+    const termV3SubCategory = document.getElementById('term-v3-sub-category');
+    const btnV3CopyDefinition = document.getElementById('btn-v3-copy-definition');
+    const notesV3Section = document.getElementById('glossary-v3-notes-section');
+    const notesV3ScrollList = document.getElementById('notes-v3-scroll-list');
+    const searchV3Input = document.getElementById('archive-v3-search');
+
+    let activeV3Pillar = 'concepts';
+    let activeV3Subcategory = '';
+    let selectedV3Term = null;
+
+    const renderV3Subcategories = (pillarId) => {
+        if (!subcategoriesV3Container) return;
+        subcategoriesV3Container.innerHTML = '';
+        const subcats = glossaryDataV3[pillarId].subcategories;
+        
+        Object.keys(subcats).forEach((subcatKey, idx) => {
+            const subcat = subcats[subcatKey];
+            const chip = document.createElement('button');
+            chip.className = 'subcategory-chip';
+            if (idx === 0) {
+                chip.classList.add('active');
+                activeV3Subcategory = subcatKey;
+            }
+            chip.textContent = subcat.label;
+            chip.setAttribute('data-subcat', subcatKey);
+            
+            chip.addEventListener('click', () => {
+                playClick();
+                subcategoriesV3Container.querySelectorAll('.subcategory-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                activeV3Subcategory = subcatKey;
+                if (searchV3Input) searchV3Input.value = '';
+                renderV3TermsForCategory(pillarId, subcatKey);
+            });
+            
+            subcategoriesV3Container.appendChild(chip);
+        });
+
+        if (activeV3Subcategory) {
+            renderV3TermsForCategory(pillarId, activeV3Subcategory);
+        }
+    };
+
+    const showV3TermDetails = (term, pillarName, subcategoryLabel) => {
+        if (!term) return;
+        selectedV3Term = term;
+        if (consoleV3DefaultMsg) consoleV3DefaultMsg.style.display = 'none';
+        if (termV3DetailsView) termV3DetailsView.style.display = 'flex';
+        
+        if (termV3Title) termV3Title.textContent = term.name;
+        if (termV3Badge) termV3Badge.textContent = pillarName.toUpperCase();
+        if (termV3Definition) termV3Definition.textContent = term.definition;
+        if (termV3SubCategory) termV3SubCategory.textContent = `Subcategory: ${subcategoryLabel}`;
+        
+        if (btnV3CopyDefinition) {
+            btnV3CopyDefinition.innerHTML = `
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                COPY TELEMETRY
+            `;
+            btnV3CopyDefinition.classList.remove('copied');
+        }
+
+        if (notesV3ScrollList) {
+            notesV3ScrollList.querySelectorAll('.note-card').forEach(card => {
+                const h5 = card.querySelector('h5');
+                if (h5 && h5.textContent === term.name) {
+                    card.classList.add('active-term');
+                } else {
+                    card.classList.remove('active-term');
+                }
+            });
+        }
+    };
+
+    const renderV3TermsForCategory = (pillarId, subcatKey) => {
+        if (!notesV3ScrollList || !notesV3Section) return;
+        notesV3ScrollList.innerHTML = '';
+        notesV3Section.style.display = 'flex';
+        
+        const pillar = glossaryDataV3[pillarId];
+        const subcat = pillar.subcategories[subcatKey];
+        const terms = subcat.terms;
+
+        terms.forEach((term, idx) => {
+            const card = document.createElement('div');
+            card.className = 'note-card';
+            if (idx === 0) {
+                card.classList.add('active-term');
+                showV3TermDetails(term, pillar.title, subcat.label);
+            }
+
+            card.innerHTML = `
+                <h5>${term.name}</h5>
+                <p>${term.definition.substring(0, 95)}...</p>
+            `;
+
+            card.addEventListener('click', () => {
+                playClick();
+                showV3TermDetails(term, pillar.title, subcat.label);
+            });
+
+            notesV3ScrollList.appendChild(card);
+        });
+
+        notesV3ScrollList.scrollTop = 0;
+    };
+
+    if (btnV3CopyDefinition) {
+        btnV3CopyDefinition.addEventListener('click', () => {
+            if (!selectedV3Term) return;
+            navigator.clipboard.writeText(`${selectedV3Term.name}: ${selectedV3Term.definition}`).then(() => {
+                playSuccess();
+                btnV3CopyDefinition.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    COPIED SECURELY!
+                `;
+                btnV3CopyDefinition.classList.add('copied');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        });
+    }
+
+    if (searchV3Input) {
+        searchV3Input.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            if (!query) {
+                subcategoriesV3Container.querySelectorAll('.subcategory-chip').forEach(c => {
+                    if (c.classList.contains('active')) {
+                        const subcatKey = c.getAttribute('data-subcat');
+                        renderV3TermsForCategory(activeV3Pillar, subcatKey);
+                    }
+                });
+                return;
+            }
+
+            const results = [];
+            Object.keys(glossaryDataV3).forEach(pillarKey => {
+                const pillar = glossaryDataV3[pillarKey];
+                Object.keys(pillar.subcategories).forEach(subcatKey => {
+                    const subcat = pillar.subcategories[subcatKey];
+                    subcat.terms.forEach(term => {
+                        if (term.name.toLowerCase().includes(query) || term.definition.toLowerCase().includes(query)) {
+                            results.push({
+                                term,
+                                pillarTitle: pillar.title,
+                                subcatLabel: subcat.label
+                            });
+                        }
+                    });
+                });
+            });
+
+            if (!notesV3ScrollList) return;
+            notesV3ScrollList.innerHTML = '';
+            subcategoriesV3Container.querySelectorAll('.subcategory-chip').forEach(c => c.classList.remove('active'));
+
+            if (results.length === 0) {
+                notesV3ScrollList.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-secondary); font-family: monospace;">
+                        <p>> NO CORRESPONDING TELEMETRY FOUND FOR "${query.toUpperCase()}"</p>
+                    </div>
+                `;
+                if (consoleV3DefaultMsg) consoleV3DefaultMsg.style.display = 'flex';
+                if (termV3DetailsView) termV3DetailsView.style.display = 'none';
+                return;
+            }
+
+            results.forEach((res, idx) => {
+                const card = document.createElement('div');
+                card.className = 'note-card';
+                if (idx === 0) {
+                    card.classList.add('active-term');
+                    showV3TermDetails(res.term, res.pillarTitle, res.subcatLabel);
+                }
+
+                card.innerHTML = `
+                    <h5>${res.term.name}</h5>
+                    <span style="font-size: 0.75rem; color: var(--neon-purple); display: block; margin-bottom: 0.2rem; font-family: var(--font-heading);">${res.subcatLabel}</span>
+                    <p>${res.term.definition.substring(0, 95)}...</p>
+                `;
+
+                card.addEventListener('click', () => {
+                    playClick();
+                    showV3TermDetails(res.term, res.pillarTitle, res.subcatLabel);
+                });
+
+                notesV3ScrollList.appendChild(card);
+            });
+
+            notesV3ScrollList.scrollTop = 0;
+        });
+    }
+
+    pillarV3Buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            playClick();
+            pillarV3Buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeV3Pillar = btn.getAttribute('data-pillar');
+            if (searchV3Input) searchV3Input.value = '';
+            renderV3Subcategories(activeV3Pillar);
+        });
+    });
+
+    if (document.getElementById('chapter-v3-knowledge-archive')) {
+        renderV3Subcategories('concepts');
+    }
+
+    // ==========================================================================
+    // 13. VOYAGE 3 SIMULATOR INTERACTION LOGIC
+    // ==========================================================================
+
+    const simV3Profiles = {
+        react: {
+            title: 'ReAct Reasoning Loop',
+            desc: 'Interleaving Reasoning (thought) and Acting (actions/tool calls) to dynamically solve tasks step-by-step.',
+            badge: 'REACT ACTIVE',
+            badgeClass: 'cyan',
+            characteristics: [
+                'Interleaves thoughts, actions, and observations',
+                'Allows dynamic trajectory self-correction',
+                'Integrates external environment context live',
+                'Best for open-ended, single-agent challenges'
+            ],
+            goal: 'Locate Sector V3 active database coordinates and write to telemetry.',
+            steps: [
+                { text: 'Initialising ReAct controller...', delay: 500, type: 'info', stepsCount: '0 / 4', action: 'STARTUP' },
+                { text: 'THOUGHT: I need to check the local flight database to find coordinates for the active V3 sector. Let me call find_coordinates().', delay: 1000, type: 'thought', stepsCount: '1 / 4', action: 'THINKING' },
+                { text: 'ACTION: Invoking tool \'find_coordinates\' with sector="V3"', delay: 800, type: 'action', stepsCount: '1 / 4', action: 'TOOL_CALL: find_coordinates' },
+                { text: 'OBSERVATION: Coordinates retrieved: [V3-Orion Nebula, Lat: 42.1, Lng: -71.5]', delay: 800, type: 'obs', stepsCount: '2 / 4', action: 'OBSERVE: find_coordinates' },
+                { text: 'THOUGHT: Excellent, the coordinates are [42.1, -71.5]. Now I must write these coordinates to the flight log. Let me call write_flight_log().', delay: 1000, type: 'thought', stepsCount: '2 / 4', action: 'THINKING' },
+                { text: 'ACTION: Invoking tool \'write_flight_log\' with Sector="V3-Orion Nebula", Lat=42.1, Lng=-71.5', delay: 800, type: 'action', stepsCount: '3 / 4', action: 'TOOL_CALL: write_flight_log' },
+                { text: 'OBSERVATION: Telemetry database committed. Flight log updated successfully.', delay: 800, type: 'obs', stepsCount: '3 / 4', action: 'OBSERVE: write_flight_log' },
+                { text: 'THOUGHT: The task is successfully finished. I will return the confirmation statement.', delay: 800, type: 'thought', stepsCount: '4 / 4', action: 'THINKING' },
+                { text: 'FINAL ANSWER: Flight log successfully calibrated with Sector V3-Orion Nebula coordinates [42.1, -71.5]. Goal achieved.', delay: 500, type: 'success', stepsCount: '4 / 4', action: 'COMPLETED' }
+            ]
+        },
+        supervisor: {
+            title: 'Supervisor & Workers',
+            desc: 'A centralized multi-agent hierarchy where a supervisor coordinator delegates subtasks to specialized worker agents.',
+            badge: 'SUPERVISOR ACTIVE',
+            badgeClass: 'green',
+            metrics: [],
+            characteristics: [
+                'Centralized agent orchestration and routing',
+                'Divides a complex goal into specialized domains',
+                'Workers communicate only with the Supervisor',
+                'Supervisor reviews outputs and compiles final result'
+            ],
+            goal: 'Fetch Raw V3 metrics, compile report, and verify schema.',
+            steps: [
+                { text: 'Initialising Multi-Agent Supervisor...', delay: 500, type: 'info', stepsCount: '0 / 3', action: 'STARTUP' },
+                { text: 'SUPERVISOR THOUGHT: Goal requires raw metrics collection followed by report compilation. I will dispatch the Research Worker first.', delay: 900, type: 'thought', stepsCount: '1 / 3', action: 'THINKING' },
+                { text: 'SUPERVISOR ACTION: Routing task "Fetch Raw V3 metrics" to RESEARCH_WORKER...', delay: 700, type: 'action', stepsCount: '1 / 3', action: 'DELEGATE: RESEARCH_WORKER' },
+                { text: 'RESEARCH_WORKER: Executing db query on sector V3 telemetry databases...', delay: 800, type: 'info', stepsCount: '1 / 3', action: 'RESEARCHING' },
+                { text: 'RESEARCH_WORKER OBS: Telemetry found: velocity=28,000km/h, fuel=84%, orbit_stability=1.0', delay: 700, type: 'obs', stepsCount: '1 / 3', action: 'REPLY: RESEARCH_WORKER' },
+                { text: 'SUPERVISOR THOUGHT: Metrics fetched. Now I will dispatch the Writer Worker to compile these into a formal report.', delay: 900, type: 'thought', stepsCount: '2 / 3', action: 'THINKING' },
+                { text: 'SUPERVISOR ACTION: Routing task "Compile metrics into markdown report" to WRITER_WORKER...', delay: 700, type: 'action', stepsCount: '2 / 3', action: 'DELEGATE: WRITER_WORKER' },
+                { text: 'WRITER_WORKER: Structuring report: Heading, Stats table, status summary...', delay: 900, type: 'info', stepsCount: '2 / 3', action: 'COMPILING' },
+                { text: 'WRITER_WORKER OBS: Manifest markdown compiled. Details: Orbit stable, velocity verified.', delay: 700, type: 'obs', stepsCount: '2 / 3', action: 'REPLY: WRITER_WORKER' },
+                { text: 'SUPERVISOR THOUGHT: Subtasks finished. Formulating final answer report.', delay: 800, type: 'thought', stepsCount: '3 / 3', action: 'THINKING' },
+                { text: 'FINAL ANSWER: V3 Telemetry Report compiled: 28k km/h velocity, 84% fuel, orbit stability 1.0. Worker files stored.', delay: 500, type: 'success', stepsCount: '3 / 3', action: 'COMPLETED' }
+            ]
+        },
+        reflection: {
+            title: 'Reflection (Critic-Gen)',
+            desc: 'A "draft, critique, revise" pipeline where a generator produces a draft and a reflector critiques it iteratively.',
+            badge: 'REFLECTION ACTIVE',
+            badgeClass: 'purple',
+            metrics: [],
+            characteristics: [
+                'Self-correcting iterative refinement loops',
+                'Validator agent acts as strict safety/schema critic',
+                'Generator adjusts drafts based on detailed critique',
+                'Minimizes hallucinations and syntax errors'
+            ],
+            goal: 'Generate valid JSON file containing Sector V3 parameters.',
+            steps: [
+                { text: 'Initialising Generator and Reflector pair...', delay: 500, type: 'info', stepsCount: '0 / 3', action: 'STARTUP' },
+                { text: 'GENERATOR: Drafting telemetry manifest parameters in JSON format...', delay: 900, type: 'info', stepsCount: '1 / 3', action: 'DRAFTING' },
+                { text: 'GENERATOR DRAFT: { "sector": "V3", coordinates: [42.1, -71.5] }', delay: 700, type: 'thought', stepsCount: '1 / 3', action: 'OUTPUT_DRAFT' },
+                { text: 'REFLECTOR ACTION: Auditing draft against schema constraints...', delay: 800, type: 'action', stepsCount: '1 / 3', action: 'CRITIQUING' },
+                { text: 'REFLECTOR CRITIQUE: Target format invalid. Key "coordinates" is missing double quotes, violating strict JSON parsing. Please correct coordinates syntax.', delay: 1000, type: 'warning', stepsCount: '1 / 3', action: 'REFUSE_DRAFT' },
+                { text: 'GENERATOR: Processing critic feedback. Fixing coordinates key formatting...', delay: 800, type: 'info', stepsCount: '2 / 3', action: 'REVISING' },
+                { text: 'GENERATOR DRAFT REVISED: { "sector": "V3", "coordinates": [42.1, -71.5] }', delay: 700, type: 'thought', stepsCount: '2 / 3', action: 'OUTPUT_REVISED' },
+                { text: 'REFLECTOR ACTION: Re-auditing revised draft...', delay: 800, type: 'action', stepsCount: '2 / 3', action: 'CRITIQUING' },
+                { text: 'REFLECTOR CRITIQUE: JSON schema parsed successfully. Metrics conform. Draft approved.', delay: 800, type: 'success', stepsCount: '2 / 3', action: 'APPROVE_DRAFT' },
+                { text: 'FINAL ANSWER: Valid JSON manifest generated and approved: { "sector": "V3", "coordinates": [42.1, -71.5] }', delay: 500, type: 'success', stepsCount: '3 / 3', action: 'COMPLETED' }
+            ]
+        }
+    };
+
+    const pickerV3Btns = document.querySelectorAll('#chapter-v3-test-flight .sim-picker-btn');
+    const titleV3 = document.getElementById('sim-pattern-title');
+    const descV3 = document.getElementById('sim-pattern-desc');
+    const badgeV3 = document.getElementById('sim-pattern-badge');
+    const characteristicsListV3 = document.getElementById('sim-pattern-characteristics');
+    
+    const statusV3 = document.getElementById('sim-v3-status');
+    const bodyV3 = document.getElementById('sim-v3-body');
+    const btnRunV3 = document.getElementById('btn-run-sim-v3');
+
+    const telGoal = document.getElementById('tel-goal');
+    const telStep = document.getElementById('tel-step');
+    const telAction = document.getElementById('tel-action');
+    const telObs = document.getElementById('tel-obs');
+
+    let currentV3Pattern = 'react';
+
+    const loadV3Pattern = (patternId) => {
+        const pattern = simV3Profiles[patternId];
+        if (!pattern) return;
+
+        currentV3Pattern = patternId;
+
+        if (titleV3) titleV3.textContent = pattern.title;
+        if (descV3) descV3.textContent = pattern.desc;
+
+        if (badgeV3) {
+            badgeV3.textContent = pattern.badge;
+            badgeV3.className = `status-badge ${pattern.badgeClass}`;
+            badgeV3.style.color = `var(--neon-${pattern.badgeClass})`;
+            badgeV3.style.borderColor = `var(--neon-${pattern.badgeClass})`;
+        }
+
+        if (characteristicsListV3) {
+            characteristicsListV3.innerHTML = '';
+            pattern.characteristics.forEach(c => {
+                const li = document.createElement('li');
+                li.textContent = c;
+                characteristicsListV3.appendChild(li);
+            });
+        }
+
+        if (telGoal) telGoal.textContent = pattern.goal;
+        if (telStep) telStep.textContent = '0 / 0';
+        if (telAction) {
+            telAction.textContent = 'NONE';
+            telAction.style.color = '#888';
+        }
+        if (telObs) {
+            telObs.textContent = 'NONE';
+            telObs.style.color = '#888';
+        }
+
+        if (statusV3) {
+            statusV3.textContent = '> STANDBY';
+            statusV3.style.color = '#888';
+        }
+        if (bodyV3) {
+            bodyV3.innerHTML = `<div class="terminal-line comment" style="color: #666;"># Pattern loaded: ${pattern.title}. Click Run Agentic Loop to simulate.</div>`;
+        }
+
+        if (btnRunV3) {
+            btnRunV3.disabled = false;
+            btnRunV3.style.opacity = '1';
+        }
+    };
+
+    pickerV3Btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            playClick();
+            pickerV3Btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const patternId = btn.getAttribute('data-pattern');
+            loadV3Pattern(patternId);
+        });
+    });
+
+    if (btnRunV3) {
+        btnRunV3.addEventListener('click', () => {
+            playClick();
+            btnRunV3.disabled = true;
+            btnRunV3.style.opacity = '0.5';
+
+            if (statusV3) {
+                statusV3.textContent = '> RUNNING';
+                statusV3.style.color = 'var(--neon-cyan)';
+            }
+            if (bodyV3) {
+                bodyV3.innerHTML = '';
+            }
+
+            const pattern = simV3Profiles[currentV3Pattern];
+            let stepIdx = 0;
+
+            const runStep = () => {
+                if (stepIdx < pattern.steps.length) {
+                    const step = pattern.steps[stepIdx];
+                    const line = document.createElement('div');
+                    line.className = 'terminal-line';
+
+                    // Styling categories
+                    if (step.type === 'thought') {
+                        line.style.color = 'var(--neon-purple)';
+                        line.textContent = `[THOUGHT] ${step.text}`;
+                    } else if (step.type === 'action') {
+                        line.style.color = 'var(--neon-pink)';
+                        line.textContent = `[ACTION] ${step.text}`;
+                    } else if (step.type === 'obs') {
+                        line.style.color = 'var(--neon-cyan)';
+                        line.textContent = `[OBSERVATION] ${step.text}`;
+                    } else if (step.type === 'success') {
+                        line.style.color = 'var(--neon-green)';
+                        line.textContent = `[SUCCESS] ${step.text}`;
+                    } else if (step.type === 'warning') {
+                        line.style.color = 'var(--neon-pink)';
+                        line.textContent = `[WARNING] ${step.text}`;
+                    } else {
+                        line.style.color = '#ccc';
+                        line.textContent = step.text;
+                    }
+
+                    if (bodyV3) {
+                        bodyV3.appendChild(line);
+                        bodyV3.scrollTop = bodyV3.scrollHeight;
+                    }
+
+                    // Update state trackers
+                    if (telStep) telStep.textContent = step.stepsCount;
+                    if (telAction) {
+                        telAction.textContent = step.action;
+                        if (step.type === 'thought') telAction.style.color = 'var(--neon-purple)';
+                        else if (step.type === 'action') telAction.style.color = 'var(--neon-pink)';
+                        else if (step.type === 'success') telAction.style.color = 'var(--neon-green)';
+                        else telAction.style.color = '#ccc';
+                    }
+                    if (telObs) {
+                        if (step.type === 'obs') {
+                            telObs.textContent = step.text.replace('[OBSERVATION] ', '').substring(0, 30) + '...';
+                            telObs.style.color = 'var(--neon-cyan)';
+                        }
+                    }
+
+                    stepIdx++;
+                    setTimeout(runStep, step.delay);
+                } else {
+                    if (statusV3) {
+                        statusV3.textContent = '> COMPLETED';
+                        statusV3.style.color = 'var(--neon-green)';
+                    }
+                    playSuccess();
+                    btnRunV3.disabled = false;
+                    btnRunV3.style.opacity = '1';
+                }
+            };
+
+            runStep();
+        });
+    }
+
+    if (document.getElementById('chapter-v3-test-flight')) {
+        loadV3Pattern('react');
     }
 });
 

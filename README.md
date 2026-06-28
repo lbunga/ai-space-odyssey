@@ -31,7 +31,29 @@ The Voyager-2 module details our deep dive into grounding AI agents:
 * **Databanks & Resources Captured (Log 7)**: Syncing RAG research papers, frameworks (LangChain/LlamaIndex), and evaluation tools (Ragas/Promptfoo).
 * **Mission Objectives Achieved (Log 8)**: Recap of skills in building ingestion pipelines, optimizing hybrid search, deploying agentic flows, and conducting LLM-as-a-judge evaluations.
 
-### Voyages 3 through 7
+### Voyage 3: Week 3 AI Agents & Frameworks
+The Voyager-3 module details our exploration of autonomous cognitive loops and protocol standards:
+* **The Agentic Singularity (Log 1)**: Charting the transition from static chatbots to dynamic, self-correcting agentic systems that run reasoning loops to resolve complex objectives.
+* **Encounters with Guest Experts (Log 2)**: Transmissions from **Arjun Patel** (Pinecone) on vector search at scale, query analysis, and source-grounded systems, and **Logan Markewich** (LlamaIndex) on document parsers and local tool execution loops (LiteParse).
+* **Core Agent Architecture (Log 3)**: Structural patterns including ReAct loops, Planner-Executor designs, multi-agent Supervisor-Workers, and Generator-Reflector pairs, alongside the cybernetic Harness equation.
+* **Tools & Connectivity Deep Dive (Log 4)**: Investigating Model Context Protocol (MCP) as the vertical integration bus, horizontal Agent-to-Agent (A2A) networks, and client vs server tool executions.
+* **The Test Flight (Log 5)**: An interactive **Multi-Pattern Agent Loop Simulator** enabling the crew to configure and run ReAct, Supervisor, and Reflection loops, observing thoughts, actions, and telemetry variables in real-time.
+* **Cohort Knowledge Archive (Log 6)**: An interactive glossary core mapping terms across Core Agent Concepts, Tools & Connectivity, Design Patterns, and Memory & Operations.
+* **Telemetry Libraries Mapped (Log 7)**: Syncing cohort resources including Pinecone, LlamaIndex, Model Context Protocol, n8n, LangChain, and AgentOps.
+* **Mission Objectives Achieved (Log 8)**: Summary of skills gained in planning, orchestration protocols, memory mapping, and tracing.
+
+### Voyage 4: Week 4 AI Evaluation Metrics
+The Voyager-4 module details our calibration of system correctness, safety, and operational performance:
+* **The Calibration Scanner (Log 1)**: Moving from prompt heuristics to systematic evaluation frameworks using gold validation datasets and automated judges.
+* **Transmissions from Orbit (Log 2)**: Guest logs from **Vasiliy** (AG2/AutoGen) on multi-agent execution design, **Angelo Giacco** (ElevenLabs) on low-latency voice AI agents, and **Arpit Chaudary** (AI System Design) on high-throughput architectures, semantic caches (GPTCache), and rate limiters.
+* **Core Calibration Constants (Log 3)**: Fundamental mathematical markers defining Accuracy, Precision, Recall, F1, and Pass Rate, alongside the Metric Selection Rule.
+* **Deep Dive Scanners (Log 4)**: Diagnostic reviews of Classification & Retrieval, Generation Similarity, RAG Grounding, and Safety Risk metrics.
+* **The Test Flight (Log 5)**: An interactive **AI Metric Finder & Simulator** application where the crew selects an AI profile (RAG, Coding Agent, Support Bot, Safety Shield, Multimodal Vision) to view recommended metrics and run a simulated terminal evaluation diagnostic.
+* **Cohort Knowledge Archive (Log 6)**: An interactive glossary core mapping terms across Math & Classification, Generation & Similarity, RAG & Grounding, and Risk & Ops.
+* **Telemetry Libraries Mapped (Log 7)**: Syncing eval resources including OpenAI Graders, Anthropic Eval Design, Ragas, DeepEval, LangSmith, and papers (G-Eval, BERTScore, BLEU, ROUGE).
+* **Calibration Mission Complete (Log 8)**: Recap of telemetry competencies gained in agent profiling, grading rubrics, security shield overlays, and cost/latency audits.
+
+### Voyages 5 through 7
 Locked navigation compartments prepared to boot up and receive incoming data logs as the hyperdrive initiates.
 
 ---

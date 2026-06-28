@@ -679,62 +679,771 @@
             </section>
         </div>
 
-        <!-- Voyage 3 Section (Locked) -->
+        <!-- Voyage 3 Section -->
         <div class="voyage-section" id="voyage-section-3" style="display: none;">
-            <div class="locked-voyage-container">
-                <div class="locked-card">
-                    <div class="lock-icon-container">
-                        <span class="lock-radar-pulse"></span>
-                        <svg class="lock-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <!-- Chapter 1: Exec Summary -->
+            <section class="chapter-card left-align" id="chapter-agentic-singularity">
+                <div class="card-content">
+                    <div class="chapter-num">LOG 01 / 08</div>
+                    <h2>The Agentic Singularity</h2>
+                    <div class="tag-row">
+                        <span class="tag alert">EXECUTIVE SUMMARY</span>
+                        <span class="tag">AUTONOMOUS AGENTS</span>
                     </div>
-                    <h2>Voyage 3: Warp Drive Uncharged</h2>
-                    <span class="status-badge danger">STANDBY - AWAITING WEEK 3 KEY</span>
-                    <p class="locked-desc">Mission details will be updated once Voyage 3 journey initiates. Standby for Flight Command coordinates.</p>
+                    <p>Captain's Log, Stardate 2026-06-21. This week, our crew crossed the event horizon of static conversational interfaces to explore autonomous, self-directed systems—AI Agents.</p>
+                    <p>Unlike standard chatbots that execute a single prompt and stop, agents are designed to navigate open-ended goals. By running in an iterative execution loop, agents evaluate their progress, invoke external tools, process environmental observations, and autonomously plan their next operations.</p>
+                    <p>Moving from simple prompt chains to agentic loops introduces high complexity but unlocks the ability to solve open-ended coding, research, and system orchestration tasks. We mastered the cognitive structures needed to construct, harness, and run these cybernetic entities safely.</p>
+                </div>
+                <div class="card-visual">
+                    <img src="assets/scene1.png" alt="Sleek spacecraft navigating through stars" class="doodle-img" loading="lazy">
+                </div>
+            </section>
+
+            <!-- Chapter 2: Guest Lectures -->
+            <section class="chapter-card right-align" id="chapter-v3-guests">
+                <div class="card-visual">
+                    <img src="assets/scene2.png" alt="Cosmic communications grid projecting guest hologram streams" class="doodle-img" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="chapter-num">LOG 02 / 08</div>
+                    <h2>Encounters with Guest Experts</h2>
+                    <div class="tag-row">
+                        <span class="tag guest">GUEST LECTURES</span>
+                        <span class="tag">SYSTEM ARCHITECTS</span>
+                    </div>
+                    <p>We received domain transmissions from two expert system commanders guiding our navigation through vector databanks and agentic indexing patterns:</p>
                     
-                    <div class="terminal-widget" style="max-width: 500px; margin: 2rem auto 0 auto;">
+                    <div class="hologram-grid">
+                        <div class="hologram-card">
+                            <div class="hologram-avatar"><span class="hologram-scanline"></span><div class="avatar-glow">AP</div></div>
+                            <div class="hologram-info">
+                                <h4>Arjun Patel</h4>
+                                <span class="hologram-org">Pinecone</span>
+                                <p>Shared how to transition agents from guessing to providing grounded, source-cited responses. Pinecone acts as a fully managed, scalable retrieval database for vector and full-text search. Emphasized hybrid search—combining dense vector semantic ranking with BM25 keyword scoring in a single query—and query analysis to map user intent into precise vector queries.</p>
+                            </div>
+                        </div>
+                        <div class="hologram-card">
+                            <div class="hologram-avatar"><span class="hologram-scanline"></span><div class="avatar-glow">LM</div></div>
+                            <div class="hologram-info">
+                                <h4>Logan Markewich</h4>
+                                <span class="hologram-org">LlamaIndex</span>
+                                <p>Introduced LiteParse, a fast, open-source library for low-latency, privacy-centric local document processing directly inside an agent's tool loop. Unlike LlamaParse, it runs strictly on-device, outputting spatial text in an ASCII grid so LLMs read tables natively. It also generates bounding boxes for precise visual citations, allowing agents to locally ingest complex documents and cite exact page spans.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 3: Key Waypoints -->
+            <section class="chapter-card left-align" id="chapter-v3-waypoints">
+                <div class="card-content" style="flex: 1 1 100%;">
+                    <div class="chapter-num">LOG 03 / 08</div>
+                    <h2>Core Agent Architecture (Core Concepts)</h2>
+                    <p>Our fleet navigation systems locked onto four primary cognitive patterns for structuring agent reasoning:</p>
+                    
+                    <div class="stats-grid" style="margin-top: 2rem;">
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">ReAct Loop</h4>
+                            <p style="font-size: 0.9rem; color: #aaa;">Synergizes Reasoning (thought chain) and Acting (action plan generation) in an interleaved loop. Enables the agent to track plans, handle exceptions, and dynamically request tools.</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-green); margin-bottom: 0.5rem;">Planner-Executor</h4>
+                            <p style="font-size: 0.9rem; color: #aaa;">Divides labor by using a larger, expensive model to generate an overarching plan upfront, and smaller, cheaper models to execute each individual step.</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-purple); margin-bottom: 0.5rem;">Supervisor Pattern</h4>
+                            <p style="font-size: 0.9rem; color: #aaa;">A centralized multi-agent system where a coordinator breaks down tasks, delegates them to specialized workers (researchers, coders), and synthesizes results.</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-pink); margin-bottom: 0.5rem;">Reflection Loop</h4>
+                            <p style="font-size: 0.9rem; color: #aaa;">A "draft, critique, revise" workflow where one generator model produces an output and another reflector model critiques it until it passes quality checks.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-cyan);">
+                        <h4 style="color: var(--neon-cyan);">THE HARNESS EQUATION</h4>
+                        <p style="font-size: 0.95rem; margin-top: 0.5rem; color: #ccc;"><strong>Agent = Model + Harness</strong>. The harness provides the runtime loop, tools, and sandboxed execution environment. It acts as a cybernetic governor utilizing <em>Guides</em> (feedforward controls before acting) and <em>Sensors</em> (feedback controls to self-correct after acting).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 4: Deep Dive Discoveries -->
+            <section class="chapter-card right-align" id="chapter-v3-deepdive">
+                <div class="card-content" style="flex: 1 1 100%;">
+                    <div class="chapter-num">LOG 04 / 08</div>
+                    <h2>Tools & Connectivity Deep Dive</h2>
+                    <div class="tag-row">
+                        <span class="tag primary">INTEGRATION PROTOCOLS</span>
+                        <span class="tag success">CONNECTIVITY BUS</span>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem;">
+                        <div style="background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-pink);">
+                            <h4 style="color: var(--neon-pink);">Model Context Protocol (MCP)</h4>
+                            <p style="font-size: 0.95rem; margin-top: 0.5rem; color: #ccc;">Known as the "USB-C port for AI." An open-source protocol that acts as a standardized vertical bus connecting hosts (AI apps) to servers (data sources, tools, and prompts) without requiring custom API clients for every new integration.</p>
+                        </div>
+                        <div style="background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-purple);">
+                            <h4 style="color: var(--neon-purple);">Agent-to-Agent (A2A) Protocol</h4>
+                            <p style="font-size: 0.95rem; margin-top: 0.5rem; color: #ccc;">A horizontal communication protocol allowing autonomous, opaque agent applications built on different frameworks to discover, delegate, and collaborate securely without exposing their internal states or proprietary logic.</p>
+                        </div>
+                        <div style="background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-green);">
+                            <h4 style="color: var(--neon-green);">Client Tools vs Server Tools</h4>
+                            <p style="font-size: 0.95rem; margin-top: 0.5rem; color: #ccc;">Client tools run locally inside your app's code infrastructure, demanding manual tool execution. Server tools execute directly on the model provider's servers (e.g., Anthropic's sandboxed python shell or web search integrations).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 5: The Test Flight (Agent Loop Simulator) -->
+            <section class="chapter-card right-align" id="chapter-v3-test-flight">
+                <div class="card-content" style="flex: 1 1 100%;">
+                    <div class="chapter-num">LOG 05 / 08</div>
+                    <h2>The Test Flight: Multi-Pattern Agent Loop Simulator</h2>
+                    <div class="tag-row">
+                        <span class="tag success">COGNITIVE ENGINE</span>
+                        <span class="tag">SIMULATION DECK</span>
+                        <span class="tag primary">AGENT RUNNER</span>
+                    </div>
+                    <p style="margin-bottom: 1.5rem;">Select an agentic reasoning pattern, define the system goal, and execute the runtime engine to inspect the execution loop, telemetry variables, and tools called in real-time.</p>
+                    
+                    <div class="simulator-layout">
+                        <!-- Left Panel: Selector buttons -->
+                        <div class="sim-selector-panel">
+                            <h4>Select Reasoning Pattern:</h4>
+                            <div class="sim-picker-grid">
+                                <button class="sim-picker-btn active" data-pattern="react">
+                                    <span class="picker-icon">🔄</span>
+                                    <span class="picker-label">ReAct Reasoning Loop</span>
+                                </button>
+                                <button class="sim-picker-btn" data-pattern="supervisor">
+                                    <span class="picker-icon">👑</span>
+                                    <span class="picker-label">Supervisor & Workers</span>
+                                </button>
+                                <button class="sim-picker-btn" data-pattern="reflection">
+                                    <span class="picker-icon">🪞</span>
+                                    <span class="picker-label">Reflection (Critic-Gen)</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Recommendation details & Diagnostic Tip -->
+                        <div class="sim-details-panel">
+                            <div class="sim-details-header">
+                                <h3 id="sim-pattern-title">ReAct Reasoning Loop</h3>
+                                <span class="status-badge" id="sim-pattern-badge" style="color: var(--neon-cyan); border-color: var(--neon-cyan); padding: 2px 6px; border: 1px solid; border-radius: 4px; font-size: 0.75rem;">PATTERN ACTIVE</span>
+                            </div>
+                            <p id="sim-pattern-desc" style="font-size: 0.95rem; color: #ccc; margin-bottom: 1rem;">Interleaving Reasoning (thought) and Acting (actions/tool calls) to dynamically solve tasks step-by-step.</p>
+                            
+                            <div class="sim-metrics-box">
+                                <h5>Pattern Characteristics:</h5>
+                                <ul id="sim-pattern-characteristics" class="recommended-list">
+                                    <!-- Populated by JS -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simulator Console Trigger & Dashboard -->
+                    <div class="simulator-console-row" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                        <!-- Console Output (Left/Main) -->
+                        <div class="terminal-widget" style="flex: 1.5; min-width: 300px; margin-top: 1.5rem;">
+                            <div class="terminal-header">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                                <span class="terminal-title">agent_runtime_loop.sh</span>
+                                <span class="terminal-status" id="sim-v3-status" style="margin-left: auto; color: var(--neon-pink); font-size: 0.8rem; font-family: monospace;">> OFFLINE</span>
+                            </div>
+                            <div class="terminal-body" id="sim-v3-body" style="text-align: left; min-height: 220px; font-family: monospace; max-height: 280px; overflow-y: auto; background: rgba(5, 5, 15, 0.95); padding: 1rem; border-radius: 0 0 8px 8px; font-size: 0.85rem; border: 1px solid rgba(0, 255, 204, 0.1); border-top: none;">
+                                <div class="terminal-line comment" style="color: #666;"># System standby. Select a pattern and click run to initiate agent simulation loop.</div>
+                            </div>
+                        </div>
+
+                        <!-- Telemetry State Panel (Right/Sidebar) -->
+                        <div class="scorecard-container-v4" id="telemetry-v3-panel" style="flex: 1; min-width: 250px; margin-top: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h4 style="color: var(--neon-cyan); margin-bottom: 0.75rem; text-transform: uppercase; font-size: 0.9rem;">📡 Telemetry State Inspector</h4>
+                                <div style="display: flex; flex-direction: column; gap: 0.75rem; font-family: monospace; font-size: 0.8rem;">
+                                    <div><strong style="color: var(--text-secondary);">GOAL:</strong> <span id="tel-goal" style="color: #ccc;">Extract coordinates and execute flight log updates.</span></div>
+                                    <div><strong style="color: var(--text-secondary);">CURRENT STEP:</strong> <span id="tel-step" style="color: var(--neon-green);">0 / 0</span></div>
+                                    <div><strong style="color: var(--text-secondary);">ACTIVE ACTION:</strong> <span id="tel-action" style="color: var(--neon-pink);">NONE</span></div>
+                                    <div><strong style="color: var(--text-secondary);">LAST OBS:</strong> <span id="tel-obs" style="color: #888;">NONE</span></div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 1.5rem;">
+                                <button class="terminal-btn" id="btn-run-sim-v3" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; padding: 0.8rem 1.8rem; border-radius: 8px; background: linear-gradient(135deg, var(--neon-green) 0%, #00b34a 100%); color: var(--bg-dark); font-family: var(--font-heading); font-weight: 700; box-shadow: 0 0 15px rgba(0, 255, 136, 0.3); transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer; width: 100%;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 2px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                    RUN AGENTIC LOOP
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 6: Cohort Knowledge Archive (Interactive Glossary Reference) -->
+            <section class="chapter-card archive-layout" id="chapter-v3-knowledge-archive">
+                <div class="card-content">
+                    <div class="chapter-num">LOG 06 / 08</div>
+                    <h2>Cohort Knowledge Archive</h2>
+                    <div class="tag-row">
+                        <span class="tag primary">LEARNING ENGINE</span>
+                        <span class="tag success">ACTIVE REFERENCES</span>
+                        <span class="tag guest">GLOSSARY VAULT</span>
+                    </div>
+                    <p>Welcome to the Voyager-3 Data Core. Tap into the virtual memory modules below to scan and retrieve key learnings, architectures, and protocols mapped during Week 3 of our flight.</p>
+                    
+                    <div class="archive-container">
+                        <!-- Pillar Sidebar Selector -->
+                        <div class="archive-pillars">
+                            <button class="pillar-v3-btn active" data-pillar="concepts">
+                                <span class="pillar-icon">🧠</span>
+                                <span class="pillar-label">Agent Concepts</span>
+                            </button>
+                            <button class="pillar-v3-btn" data-pillar="tools">
+                                <span class="pillar-icon">🛠️</span>
+                                <span class="pillar-label">Tools & Connectivity</span>
+                            </button>
+                            <button class="pillar-v3-btn" data-pillar="patterns">
+                                <span class="pillar-icon">📐</span>
+                                <span class="pillar-label">Design Patterns</span>
+                            </button>
+                            <button class="pillar-v3-btn" data-pillar="memory">
+                                <span class="pillar-icon">💾</span>
+                                <span class="pillar-label">Memory & Operations</span>
+                            </button>
+                        </div>
+
+                        <!-- Archive Body: Selector Chips & Details Display -->
+                        <div class="archive-main">
+                            <!-- Subcategories Grid -->
+                            <div class="subcategories-container" id="archive-v3-subcategories">
+                                <!-- Category chips will be rendered here by JS -->
+                            </div>
+                            
+                            <!-- Console Output Display -->
+                            <div class="console-output-wrapper">
+                                <div class="console-header">
+                                    <span class="console-dot red"></span>
+                                    <span class="console-dot yellow"></span>
+                                    <span class="console-dot green"></span>
+                                    <span class="console-title">telemetry_terminal_viewer_v3.sh</span>
+                                    <div class="search-box-container">
+                                        <input type="text" id="archive-v3-search" placeholder="Search data bank...">
+                                    </div>
+                                </div>
+                                <div class="console-body">
+                                    <div class="console-welcome" id="console-v3-default-msg">
+                                        <span class="glow-text">> VOYAGER DATA BANK STANDBY...</span>
+                                        <p>Select any category chip above to fetch its vocabulary nodes. Click on individual nodes to decrypt their core definitions.</p>
+                                    </div>
+                                    
+                                    <!-- Term Details Container (Initially Hidden) -->
+                                    <div class="term-details-view" id="term-v3-details-view" style="display: none;">
+                                        <div class="term-header-row">
+                                            <h3 id="term-v3-title">Term Name</h3>
+                                            <span class="term-pillar-badge" id="term-v3-badge">AGENT CONCEPTS</span>
+                                        </div>
+                                        <p class="term-definition" id="term-v3-definition">Term definition will be printed here...</p>
+                                        <div class="term-meta-actions">
+                                            <span class="term-category" id="term-v3-sub-category">Subcategory: Core Concepts</span>
+                                            <button class="terminal-btn-small" id="btn-v3-copy-definition">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                                COPY TELEMETRY
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Scrollable Glossary List -->
+                                    <div class="glossary-notes-section" id="glossary-v3-notes-section" style="display: none;">
+                                        <div class="notes-header">
+                                            <h4>📋 PILT MASTER LOG REFERENCE</h4>
+                                            <span class="pulse-active">REF-ACTIVE</span>
+                                        </div>
+                                        <div class="notes-scroll-container" id="notes-v3-scroll-list">
+                                            <!-- Full list of terms for the active subcategory -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 7: Databanks & Resources -->
+            <section class="chapter-card left-align" id="chapter-v3-databanks">
+                <div class="card-content" style="flex: 1 1 100%;">
+                    <div class="chapter-num">LOG 07 / 08</div>
+                    <h2>Telemetry Libraries Mapped</h2>
+                    <div class="tag-row">
+                        <span class="tag success">ARCHIVE SYNCED</span>
+                    </div>
+                    <p>Our ship's hold is now packed with critical research and frameworks for Week 3:</p>
+                    <ul style="color: #ccc; margin-top: 1rem; line-height: 1.6; font-size: 0.95rem;">
+                        <li><strong>Pinecone Vector Database:</strong> <a href="https://www.pinecone.io/" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">pinecone.io</a></li>
+                        <li><strong>LlamaIndex Data Framework:</strong> <a href="https://www.llamaindex.ai/" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">llamaindex.ai</a></li>
+                        <li><strong>Model Context Protocol (MCP):</strong> <a href="https://modelcontextprotocol.org/" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">modelcontextprotocol.org</a></li>
+                        <li><strong>n8n Workflow Automation:</strong> <a href="https://n8n.io/" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">n8n.io</a></li>
+                        <li><strong>LangChain Library:</strong> <a href="https://www.langchain.com/" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">langchain.com</a></li>
+                        <li><strong>AgentOps Tracing:</strong> <a href="https://www.agentops.ai/" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">agentops.ai</a></li>
+                    </ul>
+                    
+                    <div class="terminal-widget" style="margin-top: 2rem;">
                         <div class="terminal-header">
                             <span class="terminal-dot red"></span>
                             <span class="terminal-dot yellow"></span>
                             <span class="terminal-dot green"></span>
-                            <span class="terminal-title">voyage3_decrypt.sh</span>
+                            <span class="terminal-title">sync_w3_databanks.sh</span>
                         </div>
-                        <div class="terminal-body" style="text-align: left; min-height: auto; font-family: monospace;">
-                            <div class="terminal-line"><span class="prompt">$</span> ./decrypt_beacon --voyage=3</div>
-                            <div class="terminal-line comment"># Connecting to hyperdrive relay...</div>
-                            <div class="terminal-line success-text">> STATUS: DEEP CORE COLD. AWAITING WEEK 3 FUEL CELLS.</div>
+                        <div class="terminal-body" style="text-align: left; min-height: 120px; font-family: monospace; background: rgba(5, 5, 15, 0.95); padding: 1rem; border-radius: 0 0 8px 8px; font-size: 0.85rem; border: 1px solid rgba(0, 255, 204, 0.1); border-top: none;">
+                            <div class="terminal-line"><span class="prompt">$</span> ./chub sync --week 3</div>
+                            <div class="terminal-line comment" style="color: #666;"># Syncing Agent framework logs & Model Context Protocol hosts...</div>
+                            <div class="terminal-line success-text" style="color: var(--neon-green);">> 100% | Agentic Databanks successfully synced.</div>
+                            <div class="terminal-line success-text" style="color: var(--neon-green);">> Active tracing modules configured... OK.</div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <!-- Chapter 8: Week 3 Summary -->
+            <section class="chapter-card summary-layout" id="chapter-v3-summary">
+                <div class="chapter-num">LOG 08 / 08</div>
+                <h2>Mission Objectives Achieved</h2>
+                <div class="summary-hero-wrapper">
+                    <div class="summary-visual">
+                        <img src="assets/scene4.png" alt="Spaceship hovering above planetary rings" class="doodle-img" loading="lazy">
+                    </div>
+                    <div class="summary-stats-panel">
+                        <h3>Captain's Log: Week 3 Complete</h3>
+                        <p>Voyager-3 has successfully established a new orbit. The crew has acquired actionable skills to:</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-cyan);">Architect</span>
+                                <span class="stat-label">ReAct reasoning loops and Planner-Executor pipelines</span>
+                            </div>
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-green);">Orchestrate</span>
+                                <span class="stat-label">Multi-Agent Supervisor and Worker hierarchies</span>
+                            </div>
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-pink);">Connect</span>
+                                <span class="stat-label">Model Context Protocol hosts & client tools</span>
+                            </div>
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-purple);">Optimize</span>
+                                <span class="stat-label">Working, session, and long-term memory configurations</span>
+                            </div>
+                        </div>
+
+                        <div class="log-debrief">
+                            <strong>Mission Status:</strong> Multi-Agent protocols stable. MCP connectors active. Memory index synced. Awaiting Week 4 calibration.
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <!-- Voyage 4 Section (Locked) -->
+        <!-- Voyage 4 Section -->
         <div class="voyage-section" id="voyage-section-4" style="display: none;">
-            <div class="locked-voyage-container">
-                <div class="locked-card">
-                    <div class="lock-icon-container">
-                        <span class="lock-radar-pulse"></span>
-                        <svg class="lock-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <!-- Chapter 1: Exec Summary -->
+            <section class="chapter-card left-align" id="chapter-evaluation-matrix">
+                <div class="card-content">
+                    <div class="chapter-num">LOG 01 / 08</div>
+                    <h2>The Calibration Scanner</h2>
+                    <div class="tag-row">
+                        <span class="tag alert">EXECUTIVE SUMMARY</span>
+                        <span class="tag">SYSTEM CALIBRATION</span>
                     </div>
-                    <h2>Voyage 4: Comms Signal Lost</h2>
-                    <span class="status-badge danger">STANDBY - AWAITING WEEK 4 KEY</span>
-                    <p class="locked-desc">Mission details will be updated once Voyage 4 journey initiates. Standby for Flight Command coordinates.</p>
+                    <p>Captain's Log, Stardate 2026-06-28. Our crew initiated Voyage 4 to calibrate the guidance systems of our agentic fleet. We transitioned from building reasoning systems to validating their accuracy, reliability, and security in the wild.</p>
+                    <p>Deploying AI agents into production without systematic evaluation is like launching a rocket without flight telemetry. We explored the calibration of LLM systems, RAG loops, and safety guardrails, aligning automated LLM-judges with human-anchored benchmarks.</p>
+                    <p>By measuring deterministic rule clearances alongside subjective semantic qualities, our telemetry systems are now fully equipped to audit agent performance, diagnose context leaks, and deflect adversarial attacks before they compromise the hyperdrive.</p>
+                </div>
+                <div class="card-visual">
+                    <img src="assets/scene3.png" alt="Futuristic scanner validating spacecraft components" class="doodle-img" loading="lazy">
+                </div>
+            </section>
+
+            <!-- Chapter 2: Guest Lectures -->
+            <section class="chapter-card right-align" id="chapter-v4-guests">
+                <div class="card-visual">
+                    <img src="assets/scene5.png" alt="Cosmic communications grid projecting guest hologram streams" class="doodle-img" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="chapter-num">LOG 02 / 08</div>
+                    <h2>Transmissions from Orbit</h2>
+                    <div class="tag-row">
+                        <span class="tag guest">GUEST LECTURES</span>
+                        <span class="tag">FLIGHT TELEMETRY</span>
+                    </div>
+                    <p>We received coordinates and system insights from three expert flight commanders who have mapped these high-performance agentic trajectories:</p>
                     
-                    <div class="terminal-widget" style="max-width: 500px; margin: 2rem auto 0 auto;">
+                    <div class="hologram-grid">
+                        <div class="hologram-card">
+                            <div class="hologram-avatar"><span class="hologram-scanline"></span><div class="avatar-glow">VS</div></div>
+                            <div class="hologram-info">
+                                <h4>Vasiliy</h4>
+                                <span class="hologram-org">AG2 (AutoGen)</span>
+                                <p>Detailed the next generation of multi-agent execution frameworks. Emphasized defining robust agent conversational protocols, structured agent roles, and collaboration patterns. Showed how multi-agent networks solve complex tasks that overwhelm a single LLM, and how to orchestrate these systems with clean code interfaces.</p>
+                            </div>
+                        </div>
+                        <div class="hologram-card">
+                            <div class="hologram-avatar"><span class="hologram-scanline"></span><div class="avatar-glow">AG</div></div>
+                            <div class="hologram-info">
+                                <h4>Angelo Giacco</h4>
+                                <span class="hologram-org">ElevenLabs</span>
+                                <p>Unlocked the blueprint for low-latency voice AI agents. Discussed optimizing the text-to-speech (TTS) and speech-to-text (STT) pipeline to achieve sub-second response boundaries. Detailed voice cloning APIs, custom acoustic styling, and dynamic audio streaming protocols that prevent speech fragmentation in live conversational loops.</p>
+                            </div>
+                        </div>
+                        <div class="hologram-card">
+                            <div class="hologram-avatar"><span class="hologram-scanline"></span><div class="avatar-glow">AC</div></div>
+                            <div class="hologram-info">
+                                <h4>Arpit Chaudary</h4>
+                                <span class="hologram-org">AI System Design</span>
+                                <p>Shared architectures for scaling LLM applications to high throughput. Emphasized implementing semantic caching (like GPTCache) to intercept duplicate agent requests, configuring active rate-limiting shields, implementing intelligent fallback relays, and optimizing vector database routing to manage operational costs and latency budgets.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 3: Key Waypoints -->
+            <section class="chapter-card left-align" id="chapter-v4-waypoints">
+                <div class="card-content" style="flex: 1 1 100%;">
+                    <div class="chapter-num">LOG 03 / 08</div>
+                    <h2>Core Calibration Constants (Core Concepts)</h2>
+                    <p>Our telemetry dashboards rely on five primary mathematical foundations to evaluate agent correctness:</p>
+                    
+                    <div class="stats-grid" style="margin-top: 2rem;">
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Accuracy</h4>
+                            <span class="formula-badge" style="display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; background: rgba(0, 255, 204, 0.1); font-family: monospace; font-size: 0.8rem; color: var(--neon-cyan); border: 1px solid rgba(0, 255, 204, 0.2);">Right / Total</span>
+                            <p style="font-size: 0.9rem; color: #aaa; margin-top: 0.5rem;">Out of all cases, how many were correct. Easy to explain, but weak for rare positive cases.</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-green); margin-bottom: 0.5rem;">Precision</h4>
+                            <span class="formula-badge" style="display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; background: rgba(0, 255, 136, 0.1); font-family: monospace; font-size: 0.8rem; color: var(--neon-green); border: 1px solid rgba(0, 255, 136, 0.2);">True Positives / Predicted Positives</span>
+                            <p style="font-size: 0.9rem; color: #aaa; margin-top: 0.5rem;">When the model predicts positive, how often is it right? Use when false alarms are expensive.</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-purple); margin-bottom: 0.5rem;">Recall</h4>
+                            <span class="formula-badge" style="display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; background: rgba(185, 103, 255, 0.1); font-family: monospace; font-size: 0.8rem; color: var(--neon-purple); border: 1px solid rgba(185, 103, 255, 0.2);">True Positives / Actual Positives</span>
+                            <p style="font-size: 0.9rem; color: #aaa; margin-top: 0.5rem;">Of all real positive cases, how many did the model catch? Use when missing a case is expensive.</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-pink); margin-bottom: 0.5rem;">F1 Score</h4>
+                            <span class="formula-badge" style="display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; background: rgba(255, 0, 127, 0.1); font-family: monospace; font-size: 0.8rem; color: var(--neon-pink); border: 1px solid rgba(255, 0, 127, 0.2);">2 × P × R / (P + R)</span>
+                            <p style="font-size: 0.9rem; color: #aaa; margin-top: 0.5rem;">A single score that balances precision and recall. Useful when you care about both false alarms and misses.</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+                            <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Pass Rate</h4>
+                            <span class="formula-badge" style="display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; background: rgba(0, 255, 204, 0.1); font-family: monospace; font-size: 0.8rem; color: var(--neon-cyan); border: 1px solid rgba(0, 255, 204, 0.2);">Passed / Total</span>
+                            <p style="font-size: 0.9rem; color: #aaa; margin-top: 0.5rem;">How often an output clears a deterministic grader. Great for JSON validity, syntax tests, and tool call schemas.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-cyan);">
+                        <h4 style="color: var(--neon-cyan);">METRIC RULE</h4>
+                        <p style="font-size: 0.95rem; margin-top: 0.5rem; color: #ccc;">Pick metrics by failure cost. If bad positives are dangerous, optimize precision. If missed positives are dangerous, optimize recall. If both matter, report F1 plus the raw counts.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 4: Deep Dive Discoveries -->
+            <section class="chapter-card right-align" id="chapter-v4-deepdive">
+                <div class="card-content" style="flex: 1 1 100%;">
+                    <div class="chapter-num">LOG 04 / 08</div>
+                    <h2>Deep Dive Discoveries</h2>
+                    <div class="tag-row">
+                        <span class="tag primary">EVALUATION METRIC FAMILIES</span>
+                        <span class="tag success">DIAGNOSTIC RUBLICS</span>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem;">
+                        <div style="background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-pink);">
+                            <h4 style="color: var(--neon-pink);">1. Classification & Retrieval</h4>
+                            <p style="font-size: 0.95rem; margin-top: 0.5rem; color: #ccc;">Evaluating search and structured prediction. Includes <strong>Exact Match</strong> (identity matching), <strong>Macro F1</strong> (equal weight per class), <strong>Micro F1</strong> (volume performance), <strong>Balanced Accuracy</strong> (handles imbalanced classes), and ranking metrics like <strong>NDCG</strong>, <strong>MRR</strong>, and <strong>MAP</strong> to reward relevant context appearing at the top of retrieval pipelines.</p>
+                        </div>
+                        <div style="background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-purple);">
+                            <h4 style="color: var(--neon-purple);">2. Natural Language Generation & Similarity</h4>
+                            <p style="font-size: 0.95rem; margin-top: 0.5rem; color: #ccc;">Assessing semantic quality. Employs n-gram overlaps like <strong>BLEU</strong> (translation) and <strong>ROUGE</strong> (summarization recall), alongside embedding tools like <strong>BERTScore</strong>. For subjective features, <strong>LLM-as-a-Judge</strong> uses structured rubrics to score <strong>Relevance</strong>, <strong>Coherence</strong>, <strong>Conciseness</strong>, <strong>Tone/Style</strong>, and <strong>Instruction Following</strong>.</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--neon-purple); font-style: italic;">⚠️ JUDGE CAUTION: LLM judges are flexible but can suffer from length, position, style, and self-preference bias. Use clear rubrics, blind pairwise comparisons, and human agreement checks.</p>
+                        </div>
+                        <div style="background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-green);">
+                            <h4 style="color: var(--neon-green);">3. RAG Grounding & Task Success</h4>
+                            <p style="font-size: 0.95rem; margin-top: 0.5rem; color: #ccc;">Validating facts and outputs. Uses <strong>Faithfulness</strong> (verifying claims in context), <strong>Response Relevancy</strong>, <strong>Context Precision</strong> (avoiding noise), and <strong>Context Recall</strong>. For autonomous agents, we track **Tool-Call Accuracy**, **Code pass@k**, **SQL Execution Accuracy**, and **Task Completion Rate**.</p>
+                        </div>
+                        <div style="background: rgba(20, 20, 35, 0.6); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--neon-cyan);">
+                            <h4 style="color: var(--neon-cyan);">4. Risk, Reliability & Ops</h4>
+                            <p style="font-size: 0.95rem; margin-top: 0.5rem; color: #ccc;">Production safety and health. Tracks **Toxicity**, **Jailbreak Success Rate**, and **PII Leakage** alongside classic Ops parameters like **Latency** (p95), **Cost per successful task**, **Containment / Deflection** (resolution without human handoff), **Retry / Repair Rate**, and **Drift** over time.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 5: The Test Flight (Interactive Metric Picker & Simulator) -->
+            <section class="chapter-card right-align" id="chapter-v4-test-flight">
+                <div class="card-content" style="flex: 1 1 100%;">
+                    <div class="chapter-num">LOG 05 / 08</div>
+                    <h2>The Test Flight: Interactive AI Metric Finder & Simulator</h2>
+                    <div class="tag-row">
+                        <span class="tag success">EVALUATION PLATFORM</span>
+                        <span class="tag">SIMULATION DECK</span>
+                        <span class="tag primary">DIAGNOSTIC RUNNER</span>
+                    </div>
+                    <p style="margin-bottom: 1.5rem;">Select your AI system profile below to extract its custom evaluation telemetry suite, calibrate your target ranges, and execute a simulated flight test validation run.</p>
+                    
+                    <div class="simulator-layout">
+                        <!-- Left Panel: Selector buttons -->
+                        <div class="sim-selector-panel">
+                            <h4>Select AI System Profile:</h4>
+                            <div class="sim-picker-grid">
+                                <button class="sim-picker-btn active" data-profile="rag">
+                                    <span class="picker-icon">🧠</span>
+                                    <span class="picker-label">RAG Knowledge System</span>
+                                </button>
+                                <button class="sim-picker-btn" data-profile="coding">
+                                    <span class="picker-icon">💻</span>
+                                    <span class="picker-label">Autonomous Coding Agent</span>
+                                </button>
+                                <button class="sim-picker-btn" data-profile="support">
+                                    <span class="picker-icon">📞</span>
+                                    <span class="picker-label">Customer Support Bot</span>
+                                </button>
+                                <button class="sim-picker-btn" data-profile="safety">
+                                    <span class="picker-icon">🛡️</span>
+                                    <span class="picker-label">Safety Shield Guardrail</span>
+                                </button>
+                                <button class="sim-picker-btn" data-profile="multimodal">
+                                    <span class="picker-icon">👁️</span>
+                                    <span class="picker-label">Multimodal Vision Assistant</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Recommendation details & Diagnostic Tip -->
+                        <div class="sim-details-panel">
+                            <div class="sim-details-header">
+                                <h3 id="sim-profile-title">RAG Knowledge System</h3>
+                                <span class="status-badge" id="sim-profile-badge" style="color: var(--neon-cyan); border-color: var(--neon-cyan); padding: 2px 6px; border: 1px solid; border-radius: 4px; font-size: 0.75rem;">PROFILE ACTIVE</span>
+                            </div>
+                            <p id="sim-profile-desc" style="font-size: 0.95rem; color: #ccc; margin-bottom: 1rem;">Grounding AI reasoning in retrieval-augmented databanks to ensure factual, non-hallucinating responses.</p>
+                            
+                            <div class="sim-metrics-box">
+                                <h5>Recommended Calibration Suite:</h5>
+                                <ul id="sim-metrics-list" class="recommended-list">
+                                    <!-- Populated by JS -->
+                                </ul>
+                            </div>
+                            
+                            <div class="sim-diagnosis-box" id="sim-diagnosis-box">
+                                <!-- Diagnostic tip populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simulator Console Trigger & Dashboard -->
+                    <div class="simulator-console-row">
+                        <div class="console-run-trigger">
+                            <button class="terminal-btn" id="btn-run-sim-eval" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; padding: 0.8rem 1.8rem; border-radius: 8px; background: linear-gradient(135deg, var(--neon-cyan) 0%, #00b386 100%); color: var(--bg-dark); font-family: var(--font-heading); font-weight: 700; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer; width: 100%;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 2px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                EXECUTE CALIBRATION TELEMETRY TEST RUN
+                            </button>
+                        </div>
+
+                        <!-- Console outputs -->
+                        <div class="terminal-widget" style="width: 100%; margin-top: 1.5rem;">
+                            <div class="terminal-header">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                                <span class="terminal-title">calibration_flight_run.sh</span>
+                                <span class="terminal-status" id="sim-terminal-status" style="margin-left: auto; color: var(--neon-pink); font-size: 0.8rem; font-family: monospace;">> OFFLINE</span>
+                            </div>
+                            <div class="terminal-body" id="sim-terminal-body" style="text-align: left; min-height: 180px; font-family: monospace; max-height: 250px; overflow-y: auto; background: rgba(5, 5, 15, 0.95); padding: 1rem; border-radius: 0 0 8px 8px; font-size: 0.85rem; border: 1px solid rgba(0, 255, 204, 0.1); border-top: none;">
+                                <div class="terminal-line comment" style="color: #666;"># Standby. Click the execute button to trigger system calibration sweep.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Scoring Scorecard (Initially Hidden) -->
+                    <div class="scorecard-container-v4" id="scorecard-v4" style="display: none; margin-top: 2rem;">
+                        <h4 style="color: var(--neon-cyan); margin-bottom: 1rem; text-transform: uppercase;">📡 Flight Telemetry Scorecard Summary</h4>
+                        <div class="score-grid-v4" id="score-grid-v4">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 6: Cohort Knowledge Archive (Interactive Glossary Reference) -->
+            <section class="chapter-card archive-layout" id="chapter-v4-knowledge-archive">
+                <div class="card-content">
+                    <div class="chapter-num">LOG 06 / 08</div>
+                    <h2>Cohort Knowledge Archive</h2>
+                    <div class="tag-row">
+                        <span class="tag primary">LEARNING ENGINE</span>
+                        <span class="tag success">ACTIVE REFERENCES</span>
+                        <span class="tag guest">GLOSSARY VAULT</span>
+                    </div>
+                    <p>Welcome to the Voyager-4 Data Core. Tap into the virtual memory modules below to scan and retrieve key learnings, mathematical formulas, and evaluation principles mapped during Week 4 of our flight.</p>
+                    
+                    <div class="archive-container">
+                        <!-- Pillar Sidebar Selector -->
+                        <div class="archive-pillars">
+                            <button class="pillar-v4-btn active" data-pillar="math">
+                                <span class="pillar-icon">🧮</span>
+                                <span class="pillar-label">Math & Classification</span>
+                            </button>
+                            <button class="pillar-v4-btn" data-pillar="generation">
+                                <span class="pillar-icon">📝</span>
+                                <span class="pillar-label">Generation & Similarity</span>
+                            </button>
+                            <button class="pillar-v4-btn" data-pillar="grounding">
+                                <span class="pillar-icon">📐</span>
+                                <span class="pillar-label">RAG & Grounding</span>
+                            </button>
+                            <button class="pillar-v4-btn" data-pillar="safety">
+                                <span class="pillar-icon">🔒</span>
+                                <span class="pillar-label">Risk & Ops Metrics</span>
+                            </button>
+                        </div>
+
+                        <!-- Archive Body: Selector Chips & Details Display -->
+                        <div class="archive-main">
+                            <!-- Subcategories Grid -->
+                            <div class="subcategories-container" id="archive-v4-subcategories">
+                                <!-- Category chips will be rendered here by JS -->
+                            </div>
+                            
+                            <!-- Console Output Display -->
+                            <div class="console-output-wrapper">
+                                <div class="console-header">
+                                    <span class="console-dot red"></span>
+                                    <span class="console-dot yellow"></span>
+                                    <span class="console-dot green"></span>
+                                    <span class="console-title">telemetry_terminal_viewer_v4.sh</span>
+                                    <div class="search-box-container">
+                                        <input type="text" id="archive-v4-search" placeholder="Search data bank...">
+                                    </div>
+                                </div>
+                                <div class="console-body">
+                                    <div class="console-welcome" id="console-v4-default-msg">
+                                        <span class="glow-text">> VOYAGER DATA BANK STANDBY...</span>
+                                        <p>Select any category chip above to fetch its vocabulary nodes. Click on individual nodes to decrypt their core definitions.</p>
+                                    </div>
+                                    
+                                    <!-- Term Details Container (Initially Hidden) -->
+                                    <div class="term-details-view" id="term-v4-details-view" style="display: none;">
+                                        <div class="term-header-row">
+                                            <h3 id="term-v4-title">Term Name</h3>
+                                            <span class="term-pillar-badge" id="term-v4-badge">MATH & CLASSIFICATION</span>
+                                        </div>
+                                        <p class="term-definition" id="term-v4-definition">Term definition will be printed here...</p>
+                                        <div class="term-meta-actions">
+                                            <span class="term-category" id="term-v4-sub-category">Subcategory: Basic Math</span>
+                                            <button class="terminal-btn-small" id="btn-v4-copy-definition">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                                COPY TELEMETRY
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Scrollable Glossary List -->
+                                    <div class="glossary-notes-section" id="glossary-v4-notes-section" style="display: none;">
+                                        <div class="notes-header">
+                                            <h4>📋 PILT MASTER LOG REFERENCE</h4>
+                                            <span class="pulse-active">REF-ACTIVE</span>
+                                        </div>
+                                        <div class="notes-scroll-container" id="notes-v4-scroll-list">
+                                            <!-- Full list of terms for the active subcategory -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 7: Databanks & Resources -->
+            <section class="chapter-card left-align" id="chapter-v4-databanks">
+                <div class="card-content" style="flex: 1 1 100%;">
+                    <div class="chapter-num">LOG 07 / 08</div>
+                    <h2>Telemetry Libraries Mapped</h2>
+                    <div class="tag-row">
+                        <span class="tag success">ARCHIVE SYNCED</span>
+                    </div>
+                    <p>Our ship's hold is now packed with critical research and frameworks for Week 4:</p>
+                    <ul style="color: #ccc; margin-top: 1rem; line-height: 1.6; font-size: 0.95rem;">
+                        <li><strong>OpenAI Graders:</strong> <a href="https://developers.openai.com/api/docs/guides/graders" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">developers.openai.com/api/docs/guides/graders</a></li>
+                        <li><strong>Anthropic Eval Design:</strong> <a href="https://platform.claude.com/docs/en/test-and-evaluate/develop-tests" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">platform.claude.com/docs/en/test-and-evaluate/develop-tests</a></li>
+                        <li><strong>Ragas Metrics:</strong> <a href="https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">docs.ragas.io/en/stable/concepts/metrics/available_metrics/</a></li>
+                        <li><strong>DeepEval Metrics:</strong> <a href="https://deepeval.com/docs/metrics-introduction" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">deepeval.com/docs/metrics-introduction</a></li>
+                        <li><strong>LangSmith Evaluation:</strong> <a href="https://docs.langchain.com/langsmith/evaluation" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">docs.langchain.com/langsmith/evaluation</a></li>
+                        <li><strong>G-Eval Paper:</strong> <a href="https://arxiv.org/abs/2303.16634" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">arxiv.org/abs/2303.16634</a></li>
+                        <li><strong>BERTScore Paper:</strong> <a href="https://arxiv.org/abs/1904.09675" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">arxiv.org/abs/1904.09675</a></li>
+                        <li><strong>BLEU Paper:</strong> <a href="https://aclanthology.org/P02-1040/" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">aclanthology.org/P02-1040/</a></li>
+                        <li><strong>ROUGE Paper:</strong> <a href="https://aclanthology.org/W04-1013/" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">aclanthology.org/W04-1013/</a></li>
+                    </ul>
+                    
+                    <div class="terminal-widget" style="margin-top: 2rem;">
                         <div class="terminal-header">
                             <span class="terminal-dot red"></span>
                             <span class="terminal-dot yellow"></span>
                             <span class="terminal-dot green"></span>
-                            <span class="terminal-title">voyage4_decrypt.sh</span>
+                            <span class="terminal-title">sync_w4_databanks.sh</span>
                         </div>
-                        <div class="terminal-body" style="text-align: left; min-height: auto; font-family: monospace;">
-                            <div class="terminal-line"><span class="prompt">$</span> ./decrypt_beacon --voyage=4</div>
-                            <div class="terminal-line comment"># Connecting to hyperdrive relay...</div>
-                            <div class="terminal-line success-text">> STATUS: LINK OFFLINE. AWAITING WEEK 4 ORBITAL SWEEP.</div>
+                        <div class="terminal-body" style="text-align: left; min-height: 120px; font-family: monospace; background: rgba(5, 5, 15, 0.95); padding: 1rem; border-radius: 0 0 8px 8px; font-size: 0.85rem; border: 1px solid rgba(0, 255, 204, 0.1); border-top: none;">
+                            <div class="terminal-line"><span class="prompt">$</span> ./chub sync --week 4</div>
+                            <div class="terminal-line comment" style="color: #666;"># Fetching Ragas templates and Anthropic test cases...</div>
+                            <div class="terminal-line success-text" style="color: var(--neon-green);">> 100% | Evaluation Databanks successfully synced.</div>
+                            <div class="terminal-line success-text" style="color: var(--neon-green);">> Active scoring rubrics loaded... OK.</div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <!-- Chapter 8: Week 4 Summary -->
+            <section class="chapter-card summary-layout" id="chapter-v4-summary">
+                <div class="chapter-num">LOG 08 / 08</div>
+                <h2>Calibration Mission Complete</h2>
+                <div class="summary-hero-wrapper">
+                    <div class="summary-visual">
+                        <img src="assets/scene6.png" alt="Spaceship telemetry displays glowing active calibration status" class="doodle-img" loading="lazy">
+                    </div>
+                    <div class="summary-stats-panel">
+                        <h3>Captain's Log: Week 4 Complete</h3>
+                        <p>Voyager-4 has successfully completed its calibration orbit. The crew has unlocked operational coordinates to:</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-cyan);">Configure</span>
+                                <span class="stat-label">Precise metric suites for any LLM system type</span>
+                            </div>
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-green);">Deploy</span>
+                                <span class="stat-label">LLM-as-a-Judge grading rubrics with bias limits</span>
+                            </div>
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-pink);">Secure</span>
+                                <span class="stat-label">Shield layers defending against toxicity and jailbreaks</span>
+                            </div>
+                            <div class="stat-card" style="padding: 1rem;">
+                                <span class="stat-number" style="font-size: 1.5rem; color: var(--neon-purple);">Audit</span>
+                                <span class="stat-label">Ops metrics: latency (p95), cost, containment</span>
+                            </div>
+                        </div>
+
+                        <div class="log-debrief">
+                            <strong>System Status:</strong> Calibration verified. Flight safety indices normal. Telemetry relays locked. Awaiting Voyage 5 warp coordinates.
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
         <!-- Voyage 5 Section (Locked) -->
